@@ -64,6 +64,9 @@ public class RunnerTestMocked
 		assertEquals(Runner.MEMBER_CARD, r.getVisibleCard().getName());
 	}
 
+	/**
+	 * Make sure the checkout button changes to the right card
+	 */
 	@Test
 	public void testCheckoutButton()
 	{

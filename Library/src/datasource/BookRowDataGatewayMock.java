@@ -16,16 +16,18 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 
 	private class BookInfo
 	{
-		public BookInfo(int bookId, String title, String author)
+		public BookInfo(int bookId, String title, String author, int memberID)
 		{
 			super();
 			this.bookId = bookId;
 			this.title = title;
 			this.author = author;
+			this.memberID = memberID;
 		}
 		private int bookId;
 		private String title;
 		private String author;
+		private int memberID;
 
 		
 	}
@@ -70,9 +72,10 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	 * @param isbn the book's isbn number
 	 * @param title the book's title
 	 * @param author the books author
+	 * @param memberID the ID of the member that has this book checked out
 	 * 
 	 */
-	public BookRowDataGatewayMock(String isbn, String title, String author)
+	public BookRowDataGatewayMock(String isbn, String title, String author, int memberID)
 	{
 		if (bookInfo == null)
 		{
@@ -82,7 +85,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 		nextKey++;
 		this.isbn = isbn;
 
-		bookInfo.put(isbn, new BookInfo(bookID, title, author));
+		bookInfo.put(isbn, new BookInfo(bookID, title, author, memberID));
 	}
 
 	/**
@@ -102,7 +105,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 		nextKey = 1;
 		for (BooksForTest p : BooksForTest.values())
 		{
-			bookInfo.put(p.getISBN(), new BookInfo(nextKey, p.getTitle(), p.getAuthor()));
+			bookInfo.put(p.getISBN(), new BookInfo(nextKey, p.getTitle(), p.getAuthor(), p.getMemberID()));
 			nextKey++;
 		}
 	}
@@ -150,6 +153,25 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	public void persist()
 	{
 		bookInfo.put(isbn, info);
+	}
+
+	/**
+	 * @see datasource.BookRowDataGateway#setMemberID(int)
+	 */
+	@Override
+	public void setMemberID(int memberID)
+	{
+		info.memberID = memberID;
+		
+	}
+
+	/**
+	 * @see datasource.BookRowDataGateway#getMemberID()
+	 */
+	@Override
+	public int getMemberID()
+	{
+		return info.memberID;
 	}
 
 	
