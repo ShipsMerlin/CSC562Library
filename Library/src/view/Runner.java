@@ -32,8 +32,27 @@ public class Runner
 	 * 
 	 */
 	static final String BOOK_CARD = "bookPanel";
+	/**
+	 * 
+	 */
+	static final String MEMBER_BUTTON = "memberButton";
+	/**
+	 * 
+	 */
+	static final String CHECKOUT_CARD = "checkoutPanel";
+	/**
+	 * 
+	 */
+	static final String CHECKOUT_BUTTON = "checkoutButton";
+	/**
+	 * 
+	 */
+	static final String MEMBER_CARD = "memberPanel";
+	
 	private static JFrame frame;
 	private static JPanel cards;
+	
+	
 
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
@@ -47,14 +66,28 @@ public class Runner
 
 		JPanel mainCard = buildMainPanel();
 		JPanel bookCard = buildBookPanel();
+		JPanel memberCard = buildMemberPanel();
+		JPanel checkoutCard = buildCheckoutPanel();
 
 		cards = new JPanel(new CardLayout());
 		cards.add(mainCard, MAIN_CARD);
 		cards.add(bookCard, BOOK_CARD);
+		cards.add(memberCard, MEMBER_CARD);
+		cards.add(checkoutCard, CHECKOUT_CARD);
+		
 		// Display the window.
 		frame.getContentPane().add(cards);
 		frame.pack();
 		frame.setVisible(true);
+	}
+
+	private JPanel buildMemberPanel() {
+		// TODO Auto-generated method stub
+		JPanel card = new JPanel();
+		card.setLayout(new FlowLayout());
+		card.setName(MEMBER_CARD);
+		card.add(new JLabel("MEMBERS!!!"));
+		return card;
 	}
 
 	private JPanel buildBookPanel()
@@ -63,6 +96,15 @@ public class Runner
 		card.setLayout(new FlowLayout());
 		card.setName(BOOK_CARD);
 		card.add(new JLabel("BOOKS!!!"));
+		return card;
+	}
+	
+	private JPanel buildCheckoutPanel()
+	{
+		JPanel card = new JPanel();
+		card.setLayout(new FlowLayout());
+		card.setName(CHECKOUT_CARD);
+		card.add(new JLabel("CHECKOUT!!!"));
 		return card;
 	}
 
@@ -86,6 +128,38 @@ public class Runner
 
 		});
 		mainCard.add(button);
+		
+		JButton memberButton = new JButton("Members");
+		memberButton.setName(MEMBER_BUTTON);
+		memberButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CardLayout cl = (CardLayout) (cards.getLayout());
+				cl.show(cards, MEMBER_CARD);
+			}
+
+		});
+		mainCard.add(memberButton);
+		
+		
+		JButton checkoutButton = new JButton("Checkout");
+		checkoutButton.setName(CHECKOUT_BUTTON);
+		checkoutButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CardLayout cl = (CardLayout) (cards.getLayout());
+				cl.show(cards, CHECKOUT_CARD);
+			}
+
+		});
+		mainCard.add(checkoutButton);
+		
 		return mainCard;
 	}
 
