@@ -30,12 +30,17 @@ public class RunnerTestMocked
 				.getComponentByName(Runner.BOOK_BUTTON);
 		theButton.doClick();
 
+		pause();
+		assertEquals(Runner.BOOK_CARD, r.getVisibleCard().getName());
+	}
+
+	private void pause()
+	{
 		try
 		{
 			Thread.sleep(250);
 		} catch (InterruptedException e)
 		{
 		}
-		assertEquals(Runner.BOOK_CARD, r.getVisibleCard().getName());
 	}
 }
