@@ -6,7 +6,7 @@ import datasource.DatabaseException;
 public class BookList {
 
 	public String addBook (String isbn, String title, String author) {
-		BookRowDataGatewayMock bookRowDataGatewayMock = new BookRowDataGatewayMock( isbn,  title,  author);
+		BookRowDataGatewayMock bookRowDataGatewayMock = new BookRowDataGatewayMock( isbn,  title,  author, 0);
 		return bookRowDataGatewayMock.getISBN();
 	}
 	public String getBook (String isbn) throws DatabaseException {

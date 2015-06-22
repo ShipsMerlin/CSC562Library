@@ -1,9 +1,13 @@
+import model.MemberDataMapperTest;
 import model.QualifiedObserverConnectorTest;
+import model.BookListTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import view.RunnerTestMocked;
+import datasource.BookRowDataGatewayMockTest;
+import datasource.BookTableDataGatewayMockTest;
 import datasource.MemberRowDataGatewayMockTest;
 
 /**
@@ -20,13 +24,21 @@ import datasource.MemberRowDataGatewayMockTest;
 {
 
 // datasource
-// DatabaseTest.class
-		MemberRowDataGatewayMockTest.class,
+
+	BookRowDataGatewayMockTest.class,
+	//BookRowDataGatewayTest.class,
+	//BooksForTest.class,
+	BookTableDataGatewayMockTest.class,
+	//BookTableDataGatewayTest.class,
+	// DatabaseTest.class
+	MemberRowDataGatewayMockTest.class,
 		// MemberRowDataGatewayTest.class,
 		// MembersForTest.class,
 
 		// model
+		MemberDataMapperTest.class,
 		QualifiedObserverConnectorTest.class,
+		BookListTest.class,
 
 		// View
 		// ComponentMap.class
