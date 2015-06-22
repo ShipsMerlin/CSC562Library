@@ -30,7 +30,7 @@ static final String MAIN_CARD = "mainPanel";
 /**
 *
 */
-static final String BOOK_CARD = "bookPanel";
+static final String BOOK_CARD = "bookPanel"; 
 /**
 *
 */
@@ -44,10 +44,11 @@ static final String CHECKOUT_CARD = "checkoutPanel";
 */
 static final String CHECKOUT_BUTTON = "checkoutButton";
 /**
-*
+*AddBook_BUTTON
 */
 static final String MEMBER_CARD = "memberPanel";
 static final String AddMember_CARD = "AddMemberPanel";
+private static final String AddBook_BUTTON = null;
 private static JFrame frame;
 private static JPanel cards;
 /**
@@ -99,11 +100,31 @@ private JPanel buildMemberPanel() {
 }
 private JPanel buildBookPanel()
 {
-JPanel card = new JPanel();
+/**JPanel card = new JPanel();
 card.setLayout(new FlowLayout());
 card.setName(BOOK_CARD);
 card.add(new JLabel("BOOKS!!!"));
 return card;
+}*/
+	JPanel bookCard = new JPanel();
+	bookCard.setLayout(new FlowLayout());
+	bookCard.setName(BOOK_CARD);
+	bookCard.add(new JLabel("Add Book"));
+	bookCard.add(new JTextField(20));
+	JButton buttonAddMember = new JButton("Add");
+	buttonAddMember.setName(AddBook_BUTTON);
+	buttonAddMember.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			CardLayout cl = (CardLayout) (cards.getLayout());
+			cl.show(cards, BOOK_CARD);
+		}
+		
+	});
+	
+	bookCard.add(buttonAddMember);
+	return bookCard;
 }
 private JPanel buildCheckoutPanel()
 {
