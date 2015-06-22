@@ -31,6 +31,6 @@ import datasource.MemberRowDataGatewayMockTest;
 		// View
 		// ComponentMap.class
 		RunnerTestMocked.class, })
-public class AllSharedTests
+public class AllLibraryTests
 {
 }
