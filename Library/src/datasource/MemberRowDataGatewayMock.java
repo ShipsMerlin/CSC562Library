@@ -127,4 +127,10 @@ public class MemberRowDataGatewayMock implements MemberRowDataGateway
 		return info.memberName;
 	}
 
+	@Override
+	public String addMemberName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

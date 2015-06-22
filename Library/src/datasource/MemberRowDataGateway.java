@@ -19,7 +19,11 @@ public interface MemberRowDataGateway
 	 * @return the member's name
 	 */
 	String getMemberName();
-
+	
+	/**
+	 * @return the member's name
+	 */
+	String addMemberName();
 	/**
 	 * For testing purposes
 	 */
