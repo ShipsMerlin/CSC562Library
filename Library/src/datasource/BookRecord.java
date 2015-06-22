@@ -1,5 +1,10 @@
 package datasource;
 
+/**
+ * A data transfer record that contains the information about a given book
+ * @author Merlin
+ *
+ */
 public class BookRecord
 {
 
@@ -8,30 +13,69 @@ public class BookRecord
 	private String title;
 	private String author;
 	private int memberID;
-	
-	public int getMemberID;
-	public int getBookID()
+
+	/**
+	 * @param bookID
+	 *            the book's unique ID
+	 * @param ISBN
+	 *            the book's ISBN
+	 * @param title
+	 *            the book's title
+	 * @param author
+	 *            the book's author
+	 * @param memberID
+	 *            the ID of the member that has the book checked out (zero if it
+	 *            is in the library)
+	 */
+	public BookRecord(int bookID, String ISBN, String title, String author,
+			int memberID)
 	{
-		return bookID;
+		super();
+		this.bookID = bookID;
+		this.ISBN = ISBN;
+		this.title = title;
+		this.author = author;
 	}
-	public String getISBN()
-	{
-		return ISBN;
-	}
-	public String getTitle()
-	{
-		return title;
-	}
+
+	/**
+	 * @return the book's author
+	 */
 	public String getAuthor()
 	{
 		return author;
 	}
-	public BookRecord(int bookID, String iSBN, String title, String author, int memberID)
+
+	/**
+	 * @return the book's unique DB id
+	 */
+	public int getBookID()
 	{
-		super();
-		this.bookID = bookID;
-		ISBN = iSBN;
-		this.title = title;
-		this.author = author;
+		return bookID;
+	}
+
+	/**
+	 * @return the book's ISBN
+	 */
+	public String getISBN()
+	{
+		return ISBN;
+	}
+
+	/**
+	 * 
+	 * @return the unique DB id of the member that has this book checked out
+	 *         (zero if it is in the library)
+	 */
+	public int getMemberID()
+	{
+		return memberID;
+	}
+
+	/**
+	 * @return the book's title
+	 */
+	public String getTitle()
+	{
+		return title;
 	}
 }

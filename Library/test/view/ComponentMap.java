@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.util.HashMap;
 
-import javax.swing.JFrame;
-
 /**
  * A class that maintains a hashmap of all of the components in a Frame and
  * supports retrieving them by their names. Note that the hashmap is built on
@@ -22,7 +20,7 @@ public class ComponentMap
 
 	/**
 	 * Create the map for a given frame
-	 * @param frame the frame we are interested in
+	 * @param container the container we are interested in
 	 */
 	ComponentMap(Container container)
 	{
