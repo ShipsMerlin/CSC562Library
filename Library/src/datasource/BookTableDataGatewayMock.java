@@ -29,7 +29,23 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		return singleton;
 	}
 
-	private Hashtable<Integer, ArrayList<BookRecord>> data;
+	private class BookInfo
+	{
+		public BookInfo(int bookID, String iSBN, String title, String author)
+		{
+			super();
+			this.bookID = bookID;
+			ISBN = iSBN;
+			this.title = title;
+			this.author = author;
+		}
+		private int bookID;
+		private String ISBN;
+		private String title;
+		private String author;
+		
+	}
+	private Hashtable<Integer, ArrayList<BookInfo>> data;
 
 	/**
 	 * build the mock data from AdventuresForTest
@@ -45,18 +61,18 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 	 */
 	public void resetData()
 	{
-		data = new Hashtable<Integer, ArrayList<BookRecord>>();
+		data = new Hashtable<Integer, ArrayList<BookInfo>>();
 		for (BooksForTest a : BooksForTest.values())
 		{
-			BookRecord rec = new BookRecord(a.getBookID(),a.getISBN(),a.getTitle(), a.getAuthor(), a.getMemberID());
+			BookInfo rec = new BookInfo(a.getBookID(),a.getISBN(),a.getTitle(), a.getAuthor());
 			int key = a.getMemberID();
 			if (data.containsKey(key))
 			{
-				ArrayList<BookRecord> x = data.get(key);
+				ArrayList<BookInfo> x = data.get(key);
 				x.add(rec);
 			} else
 			{
-				ArrayList<BookRecord> x = new ArrayList<BookRecord>();
+				ArrayList<BookInfo> x = new ArrayList<BookInfo>();
 				x.add(rec);
 				data.put(key, x);
 			}
@@ -67,15 +83,20 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 	 * @see datasource.BookTableDataGateway#getBooksForMember(int)
 	 */
 	@Override
-	public ArrayList<BookRecord> getBooksForMember(int memberID)
+	public ArrayList<String> getBooksForMember(int memberID)
 			throws DatabaseException
 	{
 		if (data.containsKey(memberID))
 		{
-			return data.get(memberID);
+			ArrayList<String> isbns = new ArrayList<String>();
+			for (BookInfo info:data.get(memberID))
+			{
+				isbns.add(info.ISBN);
+			}
+			return isbns;
 		} else
 		{
-			return new ArrayList<BookRecord>();
+			return new ArrayList<String>();
 		}
 	}
 }

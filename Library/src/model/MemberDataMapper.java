@@ -1,17 +1,31 @@
 package model;
 
+import java.util.ArrayList;
+
+import datasource.BookTableDataGatewayMock;
+import datasource.DatabaseException;
+import datasource.MemberRowDataGateway;
+import datasource.MemberRowDataGatewayMock;
+
 public class MemberDataMapper
 {
 
-	public MemberDataMapper(int memberID)
+	private MemberRowDataGateway memberRowDataGateway;
+
+	public MemberDataMapper(int memberID) throws DatabaseException
 	{
-		// TODO Auto-generated constructor stub
+		memberRowDataGateway = new MemberRowDataGatewayMock(memberID);
 	}
 
-	public Member getMember()
+	public Member getMember() throws DatabaseException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Member m = new Member(memberRowDataGateway.getMemberID(), memberRowDataGateway.getMemberName());
+		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton().getBooksForMember(memberRowDataGateway.getMemberID());
+		for (String isbn:isbns)
+		{
+			m.addBook(new Book(isbn));
+		}
+		return m;
 	}
 
 }
