@@ -24,10 +24,10 @@ public class ComponentMap
 	 * Create the map for a given frame
 	 * @param frame the frame we are interested in
 	 */
-	ComponentMap(JFrame frame)
+	ComponentMap(Container container)
 	{
 		componentMap = new HashMap<String, Component>();
-		Component[] components = frame.getContentPane().getComponents();
+		Component[] components = container.getComponents();
 		addToMap(components);
 	}
 
