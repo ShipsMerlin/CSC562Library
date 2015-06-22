@@ -1,6 +1,5 @@
 import model.MemberDataMapperTest;
 import model.QualifiedObserverConnectorTest;
-import model.BookListTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -38,7 +37,6 @@ import datasource.MemberRowDataGatewayMockTest;
 		// model
 		MemberDataMapperTest.class,
 		QualifiedObserverConnectorTest.class,
-		BookListTest.class,
 
 		// View
 		// ComponentMap.class
