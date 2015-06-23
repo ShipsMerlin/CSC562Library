@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import datasource.BookRowDataGateway;
+import datasource.BookRowDataGatewayMock;
 import datasource.BookTableDataGatewayMock;
 import datasource.DatabaseException;
 import datasource.MemberRowDataGateway;
@@ -16,6 +18,7 @@ public class MemberDataMapper
 {
 
 	private MemberRowDataGateway memberRowDataGateway;
+	private ArrayList<BookRowDataGateway> bookRowDataGateways;
 
 	/**
 	 * Finder constructor 
@@ -25,6 +28,12 @@ public class MemberDataMapper
 	public MemberDataMapper(int memberID) throws DatabaseException
 	{
 		memberRowDataGateway = new MemberRowDataGatewayMock(memberID);
+		bookRowDataGateways = new ArrayList<BookRowDataGateway>();
+		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton().getBooksForMember(memberID);
+		for (String isbn:isbns)
+		{
+			addISBN(isbn);
+		}
 	}
 	
 	/**
@@ -48,23 +57,36 @@ public class MemberDataMapper
 	 */
 	public ArrayList<String> getISBNs()
 	{
-		try
+		ArrayList<String> isbns = new ArrayList<String>();
+		for (BookRowDataGateway gateway: bookRowDataGateways)
 		{
-			return BookTableDataGatewayMock.getSingleton().getBooksForMember(memberRowDataGateway.getMemberID());
-		} catch (DatabaseException e)
-		{
-			return null;
+			isbns.add(gateway.getISBN());
 		}
+		return isbns;
 	}
 
 	/**
 	 * Add an ISBN to the set of ISBNs this player has checked out
 	 * @param isbn the book we are adding
+	 * @throws DatabaseException if the book doesn't exist or the data source fails to make the change
 	 */
-	public void addISBN(String isbn)
+	public void addISBN(String isbn) throws DatabaseException
 	{
-		// TODO Auto-generated method stub
-		
+		BookRowDataGatewayMock gateway = new BookRowDataGatewayMock(isbn);
+		gateway.setMemberID(memberRowDataGateway.getMemberID());
+		bookRowDataGateways.add(gateway);
+	}
+
+	/**
+	 * Persist the information about this member through the data source layer
+	 * @throws DatabaseException if the data source cannot persist the data
+	 */
+	public void persist() throws DatabaseException
+	{
+		for  (BookRowDataGateway gateway: bookRowDataGateways)
+		{
+			gateway.persist();
+		}
 	}
 
 }

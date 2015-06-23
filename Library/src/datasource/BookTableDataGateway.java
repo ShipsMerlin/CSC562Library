@@ -25,4 +25,11 @@ public interface BookTableDataGateway
 	 */
 	void resetData();
 
+	/**
+	 * changes who owns a book
+	 * @param isbn the book's ISBN number
+	 * @param memberID the member who will now have the book checked out
+	 */
+	void setMemberID(String isbn, int memberID);
+
 }

@@ -27,8 +27,9 @@ public class Member
 	/**
 	 * Add a book to the list of books this member has checked out
 	 * @param book the book
+	 * @throws DatabaseException  if the book can't be found by the data source
 	 */
-	public void checkOutBook(Book book)
+	public void checkOutBook(Book book) throws DatabaseException
 	{
 		dataMapper.addISBN(book.getISBN());
 	}

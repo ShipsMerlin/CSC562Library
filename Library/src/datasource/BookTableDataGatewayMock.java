@@ -76,4 +76,40 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 			return new ArrayList<String>();
 		}
 	}
+
+	/**
+	 * @see datasource.BookTableDataGateway#setMemberID(java.lang.String, int)
+	 */
+	@Override
+	public void setMemberID(String isbn, int memberID)
+	{
+		ArrayList<String> savePerson = null;
+		String saveBook = null;
+		for (ArrayList<String> nextPerson:data.values())
+		{
+			for (String book:nextPerson)
+			{
+				if (book.equals(isbn))
+				{
+					savePerson = nextPerson;
+					saveBook = book;
+				}
+				
+			}
+		}
+		if (savePerson != null)
+		{
+			savePerson.remove(saveBook);
+		}
+		if (data.containsKey(memberID))
+		{
+			data.get(memberID).add(isbn);
+		}
+		else
+		{
+			ArrayList<String> newList = new ArrayList<String>();
+			newList.add(isbn);
+			data.put(memberID, newList);
+		}
+	}
 }

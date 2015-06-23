@@ -112,4 +112,20 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 		ArrayList<String> isbns = gateway.getBooksForMember(3);
 		assertEquals(0, isbns.size());
 	}
+	
+	/**
+	 * Make sure we can change who has a book
+	 * @throws DatabaseException shouldn't
+	 */
+	@Test
+	public void canChangeMemberID() throws DatabaseException
+	{
+		gateway = getGateway();
+		ArrayList<String> booksForMember = gateway.getBooksForMember(42);
+		assertEquals(0, booksForMember.size());
+		gateway.setMemberID(BooksForTest.CATCHER_IN_THE_RYE.getISBN(), 42);
+		booksForMember = gateway.getBooksForMember(42);
+		assertEquals(1, booksForMember.size());
+		assertEquals(BooksForTest.CATCHER_IN_THE_RYE.getISBN(), booksForMember.get(0));
+	}
 }

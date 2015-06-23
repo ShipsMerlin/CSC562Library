@@ -50,8 +50,12 @@ static final String MEMBER_CARD = "memberPanel";
 /**
  * 
  */
-static final String AddMember_CARD = "AddMemberPanel";
-private static final String AddBook_BUTTON = null;
+static final String ADDMEMBER_CARD = "AddMemberPanel";
+/**
+ * 
+ */
+static final String ADDMEMBER_BUTTON = "AddMemberButton";
+private static final String ADDBOOK_BUTTON = "AddBookButton";
 private static JFrame frame;
 private static JPanel cards;
 /**
@@ -87,13 +91,13 @@ private JPanel buildMemberPanel() {
 	card.add(new JLabel("Add Member"));
 	card.add(new JTextField(20));
 	JButton buttonAddMember = new JButton("Add");
-	buttonAddMember.setName(MEMBER_BUTTON);
+	buttonAddMember.setName(ADDMEMBER_BUTTON);
 	buttonAddMember.addActionListener(new ActionListener()
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			CardLayout cl = (CardLayout) (cards.getLayout());
-			cl.show(cards, AddMember_CARD);
+			cl.show(cards, ADDMEMBER_CARD);
 		}
 		
 	});
@@ -115,7 +119,7 @@ return card;
 	bookCard.add(new JLabel("Add Book"));
 	bookCard.add(new JTextField(20));
 	JButton buttonAddMember = new JButton("Add");
-	buttonAddMember.setName(AddBook_BUTTON);
+	buttonAddMember.setName(ADDBOOK_BUTTON);
 	buttonAddMember.addActionListener(new ActionListener()
 		{
 		public void actionPerformed(ActionEvent e)

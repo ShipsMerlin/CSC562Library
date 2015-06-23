@@ -153,6 +153,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	public void persist()
 	{
 		bookInfo.put(isbn, info);
+		BookTableDataGatewayMock.getSingleton().setMemberID(isbn, info.memberID);
 	}
 
 	/**
