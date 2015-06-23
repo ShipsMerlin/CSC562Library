@@ -44,7 +44,8 @@ public interface BookRowDataGateway
 	String getAuthor();
 
 	/**
-	 * @param memberID the ID of the member that has this book checked out
+	 * @param memberID
+	 *            the ID of the member that has this book checked out
 	 */
 	public void setMemberID(int memberID);
 

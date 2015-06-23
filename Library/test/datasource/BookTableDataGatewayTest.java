@@ -90,7 +90,8 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 		BooksForTest second = BooksForTest.WELLINGTON;
 		for (String record : isbn)
 		{
-			if (!record.equals(first.getISBN()) && !record.equals(second.getISBN()))
+			if (!record.equals(first.getISBN())
+					&& !record.equals(second.getISBN()))
 			{
 				fail("returned a book we shouldn't have");
 			}
@@ -105,17 +106,18 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 	 *             shouldn't
 	 */
 	@Test
-	public void retrieveBooksForMemberWithNone()
-			throws DatabaseException
+	public void retrieveBooksForMemberWithNone() throws DatabaseException
 	{
 		gateway = getGateway();
 		ArrayList<String> isbns = gateway.getBooksForMember(3);
 		assertEquals(0, isbns.size());
 	}
-	
+
 	/**
 	 * Make sure we can change who has a book
-	 * @throws DatabaseException shouldn't
+	 * 
+	 * @throws DatabaseException
+	 *             shouldn't
 	 */
 	@Test
 	public void canChangeMemberID() throws DatabaseException
@@ -126,6 +128,7 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 		gateway.setMemberID(BooksForTest.CATCHER_IN_THE_RYE.getISBN(), 42);
 		booksForMember = gateway.getBooksForMember(42);
 		assertEquals(1, booksForMember.size());
-		assertEquals(BooksForTest.CATCHER_IN_THE_RYE.getISBN(), booksForMember.get(0));
+		assertEquals(BooksForTest.CATCHER_IN_THE_RYE.getISBN(),
+				booksForMember.get(0));
 	}
 }

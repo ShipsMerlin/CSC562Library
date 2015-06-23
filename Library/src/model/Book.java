@@ -7,17 +7,19 @@ import datasource.DatabaseException;
  * Models one book in the system
  *
  */
-public class Book 
+public class Book
 {
 	private BookRowDataGatewayMock gatewayMock;
 
-	
 	/**
 	 * Get the object of an existing book with a given ISBN number
-	 * @param isbn the isbn we are interested in
-	 * @throws DatabaseException if we can't find the given ISBN number
+	 * 
+	 * @param isbn
+	 *            the isbn we are interested in
+	 * @throws DatabaseException
+	 *             if we can't find the given ISBN number
 	 */
-	public Book(String isbn) throws DatabaseException 
+	public Book(String isbn) throws DatabaseException
 	{
 		gatewayMock = new BookRowDataGatewayMock(isbn);
 	}
@@ -25,26 +27,25 @@ public class Book
 	/**
 	 * @return the book's ISBN
 	 */
-	public String getISBN() 
+	public String getISBN()
 	{
 		return gatewayMock.getISBN();
 	}
-	
+
 	/**
 	 * @return the book's title
 	 */
-	public String getTitle() 
+	public String getTitle()
 	{
 		return gatewayMock.getTitle();
 	}
-	
+
 	/**
 	 * @return the book's author
 	 */
-	public String getAuthor() 
+	public String getAuthor()
 	{
 		return gatewayMock.getAuthor();
 	}
-	
-	
+
 }

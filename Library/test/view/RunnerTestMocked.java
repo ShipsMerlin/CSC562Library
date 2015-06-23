@@ -43,12 +43,12 @@ public class RunnerTestMocked
 		{
 		}
 	}
-	
+
 	/**
 	 * make sure that the book button on the main panel causes the book panel to
 	 * be displayed
 	 */
-	
+
 	@Test
 	public void testMembersButton()
 	{
@@ -81,7 +81,5 @@ public class RunnerTestMocked
 		pause();
 		assertEquals(Runner.CHECKOUT_CARD, r.getVisibleCard().getName());
 	}
-	
-	
-	
+
 }

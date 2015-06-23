@@ -7,12 +7,9 @@ import datasource.DatabaseException;
  * @author Manal Ibrahim
  *
  */
-public class MemberList 
+public class MemberList
 {
-	/**
-	 * 
-	 */
-	public String memberName;
+
 	/**
 	 * @param string 
 	 * @param memberName
@@ -32,5 +29,7 @@ public class MemberList
 		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock(memberID);
 		return memberRowDataGatewayMock.getMemberName();
 
+
 	}
+
 }

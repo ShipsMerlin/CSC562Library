@@ -20,7 +20,9 @@ public class ComponentMap
 
 	/**
 	 * Create the map for a given frame
-	 * @param container the container we are interested in
+	 * 
+	 * @param container
+	 *            the container we are interested in
 	 */
 	ComponentMap(Container container)
 	{
@@ -47,7 +49,8 @@ public class ComponentMap
 	}
 
 	/**
-	 * @param name the name of the component we are searching for
+	 * @param name
+	 *            the name of the component we are searching for
 	 * @return the component or null of none with that name is found
 	 */
 	public Component getComponentByName(String name)

@@ -18,12 +18,12 @@ public abstract class Command implements InfoPacket
 
 	/**
 	 * 
-	 * @return true if the command should dump the queue 
-	 * 	of other commands after it executes
+	 * @return true if the command should dump the queue of other commands after
+	 *         it executes
 	 */
 	protected boolean doDump()
 	{
 		return false;
 	}
-	
+
 }

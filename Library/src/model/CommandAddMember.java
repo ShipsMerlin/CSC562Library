@@ -1,24 +1,23 @@
 package model;
 
 /**
- * @author Manal Ibrahim 
+ * @author Manal Ibrahim
  *
  */
 public class CommandAddMember extends Command
 {
-/**
- * ML is member List gonne and new Member name 
- */
+	/**
+	 * ML is member List gonne and new Member name
+	 */
 
-
-@Override
-protected boolean execute() {
-	// TODO Auto-generated method stub
-	MemberList ML = new MemberList();
-	String memberName = null;
-	ML.addMember(memberName);
-	return true;
-}
-	
+	@Override
+	protected boolean execute()
+	{
+		// TODO Auto-generated method stub
+		MemberList ML = new MemberList();
+		String memberName = null;
+		ML.addMember(memberName);
+		return true;
+	}
 
 }

@@ -8,9 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  * The main UI for the library app. It is a frame that contains a set of cards
@@ -19,7 +17,8 @@ import javax.swing.JTextField;
  * @author Merlin
  *
  */
-public class Runner {
+public class Runner
+{
 	/**
 *
 */
@@ -49,10 +48,14 @@ public class Runner {
 	 */
 	static final String MEMBER_CARD = "memberPanel";
 	/**
-	 * 
-	 */
-	static final String AddMember_CARD = "AddMemberPanel";
-	private static final String AddBook_BUTTON = null;
+ * 
+ */
+	static final String ADDMEMBER_CARD = "AddMemberPanel";
+	/**
+ * 
+ */
+	static final String ADDMEMBER_BUTTON = "AddMemberButton";
+	private static final String ADDBOOK_BUTTON = "AddBookButton";
 	private static JFrame frame;
 	private static JPanel cards;
 
@@ -60,15 +63,20 @@ public class Runner {
 	 * Create the GUI and show it. For thread safety, this method should be
 	 * invoked from the event-dispatching thread.
 	 */
-	void createAndShowGUI() {
+	void createAndShowGUI()
+	{
+		CheckoutBookGUI gui = new CheckoutBookGUI();
 		// Create and set up the window.
+
 		frame = new JFrame("HelloWorldSwing");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel mainCard = buildMainPanel();
-		JPanel bookCard = buildBookPanel();
-		JPanel memberCard = buildMemberPanel();
-		JPanel checkoutCard = buildCheckoutPanel();
 		cards = new JPanel(new CardLayout());
+		JPanel mainCard = buildMainPanel();
+
+		JPanel bookCard = new BookGUI(mainCard).bookCard;
+		JPanel memberCard = new MemberGUI(mainCard).memberCard;
+		JPanel checkoutCard = gui.createAndShowGUI();
+
 		cards.add(mainCard, MAIN_CARD);
 		cards.add(bookCard, BOOK_CARD);
 		cards.add(memberCard, MEMBER_CARD);
@@ -79,70 +87,24 @@ public class Runner {
 		frame.setVisible(true);
 	}
 
-	private JPanel buildMemberPanel() {
-		// TODO Auto-generated method stub
+	/*
+	 * private JPanel buildCheckoutPanel() { JPanel card = new JPanel();
+	 * card.setLayout(new FlowLayout()); card.setName(CHECKOUT_CARD);
+	 * card.add(new JLabel("CHECKOUT!!!")); return card; }
+	 */
 
-		JPanel card = new JPanel();
-		card.setLayout(new FlowLayout());
-		card.setName(MEMBER_CARD);
-		card.add(new JLabel("Add Member"));
-		card.add(new JTextField(20));
-		JButton buttonAddMember = new JButton("Add");
-		buttonAddMember.setName(MEMBER_BUTTON);
-		buttonAddMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) (cards.getLayout());
-				cl.show(cards, AddMember_CARD);
-			}
-
-		});
-
-		card.add(buttonAddMember);
-		return card;
-	}
-
-	private JPanel buildBookPanel() {
-		/**
-		 * JPanel card = new JPanel(); card.setLayout(new FlowLayout());
-		 * card.setName(BOOK_CARD); card.add(new JLabel("BOOKS!!!")); return
-		 * card; }
-		 */
-		JPanel bookCard = new JPanel();
-		bookCard.setLayout(new FlowLayout());
-		bookCard.setName(BOOK_CARD);
-		bookCard.add(new JLabel("Add Book"));
-		bookCard.add(new JTextField(20));
-		JButton buttonAddMember = new JButton("Add");
-		buttonAddMember.setName(AddBook_BUTTON);
-		buttonAddMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) (cards.getLayout());
-				cl.show(cards, BOOK_CARD);
-			}
-
-		});
-
-		bookCard.add(buttonAddMember);
-		return bookCard;
-	}
-
-	private JPanel buildCheckoutPanel() {
-		JPanel card = new JPanel();
-		card.setLayout(new FlowLayout());
-		card.setName(CHECKOUT_CARD);
-		card.add(new JLabel("CHECKOUT!!!"));
-		return card;
-	}
-
-	private JPanel buildMainPanel() {
+	private JPanel buildMainPanel()
+	{
 		JPanel mainCard = new JPanel();
 		mainCard.setLayout(new FlowLayout());
 		mainCard.setName(MAIN_CARD);
 		JButton button = new JButton("Books");
 		button.setName(BOOK_BUTTON);
-		button.addActionListener(new ActionListener() {
+		button.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				CardLayout cl = (CardLayout) (cards.getLayout());
 				cl.show(cards, BOOK_CARD);
 			}
@@ -150,9 +112,11 @@ public class Runner {
 		mainCard.add(button);
 		JButton memberButton = new JButton("Members");
 		memberButton.setName(MEMBER_BUTTON);
-		memberButton.addActionListener(new ActionListener() {
+		memberButton.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				CardLayout cl = (CardLayout) (cards.getLayout());
 				cl.show(cards, MEMBER_CARD);
 			}
@@ -160,9 +124,11 @@ public class Runner {
 		mainCard.add(memberButton);
 		JButton checkoutButton = new JButton("Checkout");
 		checkoutButton.setName(CHECKOUT_BUTTON);
-		checkoutButton.addActionListener(new ActionListener() {
+		checkoutButton.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				CardLayout cl = (CardLayout) (cards.getLayout());
 				cl.show(cards, CHECKOUT_CARD);
 			}
@@ -175,11 +141,14 @@ public class Runner {
 	 * @param args
 	 *            unused
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				Runner r = new Runner();
 				r.createAndShowGUI();
 			}
@@ -189,16 +158,20 @@ public class Runner {
 	/**
 	 * @return the frame containing the application view
 	 */
-	static JFrame getFrame() {
+	static JFrame getFrame()
+	{
 		return frame;
 	}
 
 	/**
 	 * @return the card that is current visible
 	 */
-	Component getVisibleCard() {
-		for (int i = 0; i < cards.getComponentCount(); i++) {
-			if (cards.getComponent(i).isVisible()) {
+	Component getVisibleCard()
+	{
+		for (int i = 0; i < cards.getComponentCount(); i++)
+		{
+			if (cards.getComponent(i).isVisible())
+			{
 				return cards.getComponent(i);
 			}
 		}

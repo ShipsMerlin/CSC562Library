@@ -53,12 +53,14 @@ public class ModelFacade
 
 	/**
 	 * Checks if commands are pending
+	 * 
 	 * @return if commands are pending
 	 */
 	public boolean hasCommandsPending()
 	{
 		return commandsPending;
 	}
+
 	/**
 	 * Make the default constructor private
 	 */

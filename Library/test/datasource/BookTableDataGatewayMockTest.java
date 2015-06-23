@@ -2,14 +2,13 @@ package datasource;
 
 /**
  * Tests the mock implementation
+ * 
  * @author merlin
  *
  */
-public class BookTableDataGatewayMockTest extends
-		BookTableDataGatewayTest
+public class BookTableDataGatewayMockTest extends BookTableDataGatewayTest
 {
 
-	
 	/**
 	 * @see datasource.BookTableDataGatewayTest#getGateway()
 	 */
@@ -19,5 +18,4 @@ public class BookTableDataGatewayMockTest extends
 		return BookTableDataGatewayMock.getSingleton();
 	}
 
-	
 }
