@@ -32,7 +32,7 @@ public class CheckoutBookGUI extends JPanel implements ActionListener
 
 		JPanel content = new JPanel();
 		content.setLayout(new GridLayout(2, 1));
-		content.setName("myPanel");
+		content.setName("checkoutPanel");
 
 		/**
 		 * Adding all components for Member Search

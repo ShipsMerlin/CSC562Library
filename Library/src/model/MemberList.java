@@ -33,4 +33,17 @@ public class MemberList
 		return memberRowDataGatewayMock.addMemberName();
 
 	}
+	
+	/**
+	 * @param memberID - the ID of the member being searched
+	 * @return memberRowDataGatewayMock.addMemberName
+	 * @throws DatabaseException
+	 */
+	public String getMember(int memberID) throws DatabaseException
+	{
+		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock(
+				memberID);
+		return memberRowDataGatewayMock.getMemberName();
+
+	}
 }

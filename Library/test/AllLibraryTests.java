@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import view.RunnerTestMocked;
-import view.TestCheckoutBookGUI;
+import view.CheckoutBookGUITest;
 import datasource.BookRowDataGatewayMockTest;
 import datasource.BookTableDataGatewayMockTest;
 import datasource.MemberRowDataGatewayMockTest;
@@ -41,7 +41,7 @@ import datasource.MemberRowDataGatewayMockTest;
 
 		// View
 		// ComponentMap.class
-		RunnerTestMocked.class, TestCheckoutBookGUI.class })
+		RunnerTestMocked.class, CheckoutBookGUITest.class })
 public class AllLibraryTests
 {
 }

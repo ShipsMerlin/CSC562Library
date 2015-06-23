@@ -31,37 +31,37 @@ public class CheckoutBookGUITest
 		 * screen
 		 */
 		JLabel label1 = (JLabel) componentMap.getComponentByName("lblMember");
-		assertEquals("lblMember", label1.getName());
+		assertNotNull(label1);
 
 		JTextField textField1 = (JTextField) componentMap
 				.getComponentByName("txtMemberSearch");
-		assertEquals("txtMemberSearch", textField1.getName());
+		assertNotNull(textField1);
 
 		JButton button1 = (JButton) componentMap
 				.getComponentByName("btnSearchMember");
-		assertEquals("btnSearchMember", button1.getName());
+		assertNotNull(button1);
 
 		/**
 		 * Tests that components pertaining to member searching are on the
 		 * screen
 		 */
 		JLabel label2 = (JLabel) componentMap.getComponentByName("lblBook");
-		assertEquals("lblBook", label2.getName());
+		assertNotNull(label2);
 
 		JTextField textField2 = (JTextField) componentMap
 				.getComponentByName("txtBookSearch");
-		assertEquals("txtBookSearch", textField2.getName());
+		assertNotNull(textField2);
 
 		JButton button2 = (JButton) componentMap
 				.getComponentByName("btnSearchBook");
-		assertEquals("btnSearchBook", button2.getName());
+		assertNotNull(button2);
 
 		/**
 		 * Tests that the Checkout button is on the screen
 		 */
 		JButton button3 = (JButton) componentMap
 				.getComponentByName("btnCheckout");
-		assertEquals("btnCheckout", button3.getName());
+		assertNotNull(button3);
 
 	}
 
