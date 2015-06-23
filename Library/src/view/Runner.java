@@ -2,6 +2,7 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -95,7 +96,7 @@ public class Runner
 	private JPanel buildMainPanel()
 	{
 		JPanel mainCard = new JPanel();
-		mainCard.setLayout(new CardLayout());
+		mainCard.setLayout(new FlowLayout());
 		mainCard.setName(MAIN_CARD);
 		JButton button = new JButton("Books");
 		button.setName(BOOK_BUTTON);

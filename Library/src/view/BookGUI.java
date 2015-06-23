@@ -48,8 +48,13 @@ public class BookGUI
 		JPanel bookCard = new JPanel();
 		bookCard.setLayout(new FlowLayout());
 		bookCard.setName("bookPanel");
-		bookCard.add(new JLabel("Add Book"));
+		JLabel bookLabel = new JLabel("Add Book");
+		bookLabel.setName("BookLabel");
+		bookCard.add(bookLabel);
 		bookCard.add(new JTextField(20));
+		JTextField textField = new JTextField(20); 
+		textField.setName("BookTextField");
+		bookCard.add(textField);
 		JButton buttonAddMember = new JButton("Add");
 		buttonAddMember.setName("AddBookButton");
 		buttonAddMember.addActionListener(new ActionListener()

@@ -41,7 +41,7 @@ public class MemberGUI
 	JPanel createAndShowGUI()
 	{
 		JPanel card = new JPanel();
-		card.setLayout(new CardLayout());
+		card.setLayout(new FlowLayout());
 		card.setName("memberPanel");
 		JLabel memberLabel = new JLabel("Add Member");
 		memberLabel.setName("MemberLabel");
