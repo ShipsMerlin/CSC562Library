@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -10,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * @author bwiens
+ *
+ */
 public class CheckoutBookGUI {
 
 	private static JFrame jFrame;
@@ -17,7 +20,7 @@ public class CheckoutBookGUI {
 	/**
 	 * Creates the components for the Checkout Book GUI
 	 */
-	public static void createAndShowGUI()
+	void createAndShowGUI()
 	{
 		jFrame = new JFrame("CheckoutSwing");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,53 +29,58 @@ public class CheckoutBookGUI {
 		content.setLayout(new GridLayout(2, 1));
 		content.setName("myPanel");
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 2));
-		JLabel label = new JLabel("Member");
-		label.setName("Member");
+		/**
+		 * Adding all components for Member Search
+		 */
+		JPanel memberPanel = new JPanel();
+		memberPanel.setLayout(new GridLayout(2, 2));
+		JLabel memberLabel = new JLabel("Member");
+		memberLabel.setName("lblMember");
 		
 		JLabel label3 = new JLabel("");
 		label3.setName("Spacer");
-		JButton button = new JButton("Search");
-		button.setName("Search");
+		JButton memberSearchButton = new JButton("Search");
+		memberSearchButton.setName("btnSearchMember");
 		
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(2, 2));
-		JLabel label2 = new JLabel("Book");
-		label2.setName("Book");
-		
-		JLabel label4 = new JLabel("");
-		label4.setName("Spacer");
-		JButton button2 = new JButton("Search");
-		button2.setName("Search");
-		
-		JButton checkoutbutton = new JButton("Checkout");
-		checkoutbutton.setName("Checkout");
-				
 		final JTextField x = new JTextField(20);
 		x.setName("txtMemberSearch");
 		
+		memberPanel.add(memberLabel);
+		memberPanel.add(label3);
+		memberPanel.add(x);
+		memberPanel.add(memberSearchButton);
+		content.add(memberPanel);
+		
+		/**
+		 * Adding all components for Book Search
+		 */
+		JPanel bookPanel = new JPanel();
+		bookPanel.setLayout(new GridLayout(2, 2));
+		JLabel bookLabel = new JLabel("Book");
+		bookLabel.setName("lblBook");
+		
+		JLabel label4 = new JLabel("");
+		label4.setName("Spacer");
+		JButton bookSearchButton = new JButton("Search");
+		bookSearchButton.setName("btnSearchBook");
+
 		final JTextField y = new JTextField(20);
 		y.setName("txtBookSearch");
-		
-		panel.add(label);
-		panel.add(label3);
-		panel.add(x);
-		panel.add(button);
-		content.add(panel);
 
+		bookPanel.add(bookLabel);
+		bookPanel.add(label4);
+		bookPanel.add(y);
+		bookPanel.add(bookSearchButton);
+		content.add(bookPanel);
 		
-		panel2.add(label2);
-		panel2.add(label4);
-		panel2.add(y);
-		panel2.add(button2);
-		content.add(panel2);
+		/**
+		 * Adding Checkout Button
+		 */
+		JButton checkoutbutton = new JButton("Checkout");
+		checkoutbutton.setName("btnCheckout");
 		
 		content.add(checkoutbutton);
-		
-	
-		
-		
+
 		jFrame.getContentPane().add(content);
 		jFrame.pack();
 		jFrame.setVisible(true);
@@ -88,6 +96,9 @@ public class CheckoutBookGUI {
 	}
 
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
@@ -95,7 +106,8 @@ public class CheckoutBookGUI {
 		{
 			public void run()
 			{
-				createAndShowGUI();
+				CheckoutBookGUI gui = new CheckoutBookGUI();
+				gui.createAndShowGUI();
 			}
 		});
 	}
