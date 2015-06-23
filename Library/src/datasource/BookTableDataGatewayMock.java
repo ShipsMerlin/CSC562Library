@@ -85,16 +85,16 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 	{
 		ArrayList<String> savePerson = null;
 		String saveBook = null;
-		for (ArrayList<String> nextPerson:data.values())
+		for (ArrayList<String> nextPerson : data.values())
 		{
-			for (String book:nextPerson)
+			for (String book : nextPerson)
 			{
 				if (book.equals(isbn))
 				{
 					savePerson = nextPerson;
 					saveBook = book;
 				}
-				
+
 			}
 		}
 		if (savePerson != null)
@@ -104,8 +104,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		if (data.containsKey(memberID))
 		{
 			data.get(memberID).add(isbn);
-		}
-		else
+		} else
 		{
 			ArrayList<String> newList = new ArrayList<String>();
 			newList.add(isbn);

@@ -24,27 +24,24 @@ import datasource.MemberRowDataGatewayMockTest;
 @Suite.SuiteClasses(
 {
 
-	// datasource
-	BookRowDataGatewayMockTest.class,
-	//BookRowDataGatewayTest.class,
-	//BooksForTest.class,
-	BookTableDataGatewayMockTest.class,
-	//BookTableDataGatewayTest.class,
-	// DatabaseTest.class
-	MemberRowDataGatewayMockTest.class,
-	// MemberRowDataGatewayTest.class,
-	// MembersForTest.class,
+		// datasource
+		BookRowDataGatewayMockTest.class,
+		// BookRowDataGatewayTest.class,
+		// BooksForTest.class,
+		BookTableDataGatewayMockTest.class,
+		// BookTableDataGatewayTest.class,
+		// DatabaseTest.class
+		MemberRowDataGatewayMockTest.class,
+		// MemberRowDataGatewayTest.class,
+		// MembersForTest.class,
 
-	// model
-	MemberDataMapperTest.class,
-	MemberTest.class,
-	QualifiedObserverConnectorTest.class,
+		// model
+		MemberDataMapperTest.class, MemberTest.class,
+		QualifiedObserverConnectorTest.class,
 
-	// View
-	// ComponentMap.class
-	RunnerTestMocked.class,
-	TestCheckoutBookGUI.class
-})
+		// View
+		// ComponentMap.class
+		RunnerTestMocked.class, TestCheckoutBookGUI.class })
 public class AllLibraryTests
 {
 }

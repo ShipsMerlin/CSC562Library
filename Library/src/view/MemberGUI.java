@@ -14,7 +14,8 @@ import javax.swing.JTextField;
  * @author em1419
  *
  */
-public class MemberGUI {
+public class MemberGUI
+{
 	/**
 	 * 
 	 */
@@ -23,29 +24,37 @@ public class MemberGUI {
 	 * 
 	 */
 	JPanel memberCard;
+
 	/**
 	 * @param panel
 	 */
-	MemberGUI(JPanel panel) {
+	MemberGUI(JPanel panel)
+	{
 		contentPane = panel;
 		memberCard = createAndShowGUI();
 	}
-	
+
 	/**
-	 * @return 
+	 * @return
 	 * 
 	 */
 	JPanel createAndShowGUI()
 	{
 		JPanel card = new JPanel();
-		card.setLayout(new FlowLayout());
-		card.setName("MemberCard");
-		card.add(new JLabel("Add Member"));
-		card.add(new JTextField(20));
+		card.setLayout(new CardLayout());
+		card.setName("memberPanel");
+		JLabel memberLabel = new JLabel("Add Member");
+		memberLabel.setName("MemberLabel");
+		card.add(memberLabel);
+		JTextField textField = new JTextField(20); 
+		textField.setName("MemberTextField");
+		card.add(textField);
 		JButton buttonAddMember = new JButton("Add");
 		buttonAddMember.setName("AddMemberButton");
-		buttonAddMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		buttonAddMember.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				CardLayout cl = (CardLayout) (contentPane.getLayout());
 				cl.show(contentPane, "AddMemberCard");
 			}
@@ -53,7 +62,7 @@ public class MemberGUI {
 		});
 
 		card.add(buttonAddMember);
-		
+
 		return card;
 	}
 }

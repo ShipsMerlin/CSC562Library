@@ -10,8 +10,9 @@ import datasource.BooksForTest;
 import datasource.DatabaseException;
 import datasource.MembersForTest;
 
-/** 
+/**
  * Tests the member class
+ * 
  * @author Merlin
  *
  */
@@ -20,7 +21,9 @@ public class MemberTest
 
 	/**
 	 * Make sure we can find existing members
-	 * @throws DatabaseException shouldn't
+	 * 
+	 * @throws DatabaseException
+	 *             shouldn't
 	 */
 	@Test
 	public void findConstructor() throws DatabaseException
@@ -34,7 +37,7 @@ public class MemberTest
 				expectedISBNs.add(b.getISBN());
 			}
 		}
-		
+
 		Member m = new Member(MembersForTest.MERLIN.getMemberID());
 		assertEquals(MembersForTest.MERLIN.getMemberID(), m.getMemberID());
 		assertEquals(MembersForTest.MERLIN.getMemberName(), m.getMemberName());

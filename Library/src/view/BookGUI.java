@@ -14,7 +14,8 @@ import javax.swing.JTextField;
  * @author em1419
  *
  */
-public class BookGUI {
+public class BookGUI
+{
 	/**
 	 * 
 	 */
@@ -23,17 +24,19 @@ public class BookGUI {
 	 * 
 	 */
 	JPanel bookCard;
-	
+
 	/**
-	 * @param panel
+	 * Constructor 
+	 * @param panel - the main panel of the application
 	 */
-	BookGUI(JPanel panel) {
+	BookGUI(JPanel panel)
+	{
 		contentPane = panel;
 		bookCard = createAndShowGUI();
 	}
-	
+
 	/**
-	 * @return
+	 * @return - return the book panel
 	 */
 	JPanel createAndShowGUI()
 	{
@@ -44,15 +47,17 @@ public class BookGUI {
 		 */
 		JPanel bookCard = new JPanel();
 		bookCard.setLayout(new FlowLayout());
-		bookCard.setName("BookCard");
+		bookCard.setName("bookPanel");
 		bookCard.add(new JLabel("Add Book"));
 		bookCard.add(new JTextField(20));
 		JButton buttonAddMember = new JButton("Add");
 		buttonAddMember.setName("AddBookButton");
-		buttonAddMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		buttonAddMember.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				CardLayout cl = (CardLayout) (contentPane.getLayout());
-				cl.show(contentPane, "BookCard");
+				cl.show(contentPane, "bookPanel");
 			}
 
 		});

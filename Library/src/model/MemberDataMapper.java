@@ -11,6 +11,7 @@ import datasource.MemberRowDataGatewayMock;
 
 /**
  * Maps all of the information from a member into the data source layer
+ * 
  * @author Merlin
  *
  */
@@ -21,21 +22,25 @@ public class MemberDataMapper
 	private ArrayList<BookRowDataGateway> bookRowDataGateways;
 
 	/**
-	 * Finder constructor 
-	 * @param memberID the unique ID of the member we are interested in
-	 * @throws DatabaseException if we can't find the given member
+	 * Finder constructor
+	 * 
+	 * @param memberID
+	 *            the unique ID of the member we are interested in
+	 * @throws DatabaseException
+	 *             if we can't find the given member
 	 */
 	public MemberDataMapper(int memberID) throws DatabaseException
 	{
 		memberRowDataGateway = new MemberRowDataGatewayMock(memberID);
 		bookRowDataGateways = new ArrayList<BookRowDataGateway>();
-		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton().getBooksForMember(memberID);
-		for (String isbn:isbns)
+		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton()
+				.getBooksForMember(memberID);
+		for (String isbn : isbns)
 		{
 			addISBN(isbn);
 		}
 	}
-	
+
 	/**
 	 * @return the member's unique ID
 	 */
@@ -58,7 +63,7 @@ public class MemberDataMapper
 	public ArrayList<String> getISBNs()
 	{
 		ArrayList<String> isbns = new ArrayList<String>();
-		for (BookRowDataGateway gateway: bookRowDataGateways)
+		for (BookRowDataGateway gateway : bookRowDataGateways)
 		{
 			isbns.add(gateway.getISBN());
 		}
@@ -67,8 +72,12 @@ public class MemberDataMapper
 
 	/**
 	 * Add an ISBN to the set of ISBNs this player has checked out
-	 * @param isbn the book we are adding
-	 * @throws DatabaseException if the book doesn't exist or the data source fails to make the change
+	 * 
+	 * @param isbn
+	 *            the book we are adding
+	 * @throws DatabaseException
+	 *             if the book doesn't exist or the data source fails to make
+	 *             the change
 	 */
 	public void addISBN(String isbn) throws DatabaseException
 	{
@@ -79,11 +88,13 @@ public class MemberDataMapper
 
 	/**
 	 * Persist the information about this member through the data source layer
-	 * @throws DatabaseException if the data source cannot persist the data
+	 * 
+	 * @throws DatabaseException
+	 *             if the data source cannot persist the data
 	 */
 	public void persist() throws DatabaseException
 	{
-		for  (BookRowDataGateway gateway: bookRowDataGateways)
+		for (BookRowDataGateway gateway : bookRowDataGateways)
 		{
 			gateway.persist();
 		}

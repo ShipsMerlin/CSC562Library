@@ -13,21 +13,26 @@ public class Member
 {
 
 	private MemberDataMapper dataMapper;
-	
+
 	/**
-	 * @param memberID the unique ID of the member we are modeling
-	 * @throws DatabaseException if we can't find the given member in the data source
-	 *  
+	 * @param memberID
+	 *            the unique ID of the member we are modeling
+	 * @throws DatabaseException
+	 *             if we can't find the given member in the data source
+	 * 
 	 */
 	public Member(int memberID) throws DatabaseException
 	{
 		this.dataMapper = new MemberDataMapper(memberID);
 	}
-	
+
 	/**
 	 * Add a book to the list of books this member has checked out
-	 * @param book the book
-	 * @throws DatabaseException  if the book can't be found by the data source
+	 * 
+	 * @param book
+	 *            the book
+	 * @throws DatabaseException
+	 *             if the book can't be found by the data source
 	 */
 	public void checkOutBook(Book book) throws DatabaseException
 	{
