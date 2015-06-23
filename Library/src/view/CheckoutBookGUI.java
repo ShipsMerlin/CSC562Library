@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * @author bwiens
+ *
+ */
 public class CheckoutBookGUI {
 
 	private static JFrame jFrame;
@@ -92,6 +96,9 @@ public class CheckoutBookGUI {
 	}
 
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.

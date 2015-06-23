@@ -49,14 +49,10 @@ public class Runner {
 	 */
 	static final String MEMBER_CARD = "memberPanel";
 	/**
- * 
- */
-	static final String ADDMEMBER_CARD = "AddMemberPanel";
-	/**
- * 
- */
-	static final String ADDMEMBER_BUTTON = "AddMemberButton";
-	private static final String ADDBOOK_BUTTON = "AddBookButton";
+	 * 
+	 */
+	static final String AddMember_CARD = "AddMemberPanel";
+	private static final String AddBook_BUTTON = null;
 	private static JFrame frame;
 	private static JPanel cards;
 
@@ -92,11 +88,11 @@ public class Runner {
 		card.add(new JLabel("Add Member"));
 		card.add(new JTextField(20));
 		JButton buttonAddMember = new JButton("Add");
-		buttonAddMember.setName(ADDMEMBER_BUTTON);
+		buttonAddMember.setName(MEMBER_BUTTON);
 		buttonAddMember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout) (cards.getLayout());
-				cl.show(cards, ADDMEMBER_CARD);
+				cl.show(cards, AddMember_CARD);
 			}
 
 		});
@@ -117,7 +113,7 @@ public class Runner {
 		bookCard.add(new JLabel("Add Book"));
 		bookCard.add(new JTextField(20));
 		JButton buttonAddMember = new JButton("Add");
-		buttonAddMember.setName(ADDBOOK_BUTTON);
+		buttonAddMember.setName(AddBook_BUTTON);
 		buttonAddMember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout) (cards.getLayout());
