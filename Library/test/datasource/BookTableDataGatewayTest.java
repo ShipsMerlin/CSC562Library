@@ -82,31 +82,17 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 	public void retrieveAllBooksCheckedOutByAMember() throws DatabaseException
 	{
 		gateway = getGateway();
-		ArrayList<BookRecord> records = gateway
+		ArrayList<String> isbn = gateway
 				.getBooksForMember(MembersForTest.MERLIN.getMemberID());
-		assertEquals(2, records.size());
+		assertEquals(2, isbn.size());
 		// the records could be in either order
 		BooksForTest first = BooksForTest.CATCHER_IN_THE_RYE;
 		BooksForTest second = BooksForTest.WELLINGTON;
-		for (BookRecord record : records)
+		for (String record : isbn)
 		{
-			if (record.getBookID() == first.getBookID())
+			if (!record.equals(first.getISBN()) && !record.equals(second.getISBN()))
 			{
-				assertEquals(first.getAuthor(), record.getAuthor());
-				assertEquals(first.getTitle(), record.getTitle());
-				assertEquals(first.getISBN(), record.getISBN());
-				assertEquals(first.getBookID(), record.getBookID());
-
-			} else if (record.getBookID() == second.getBookID())
-			{
-				assertEquals(second.getAuthor(), record.getAuthor());
-				assertEquals(second.getTitle(), record.getTitle());
-				assertEquals(second.getISBN(), record.getISBN());
-				assertEquals(second.getBookID(), record.getBookID());
-
-			} else
-			{
-				fail("Unexpected adventure state");
+				fail("returned a book we shouldn't have");
 			}
 		}
 	}
@@ -123,7 +109,7 @@ public abstract class BookTableDataGatewayTest extends DatabaseTest
 			throws DatabaseException
 	{
 		gateway = getGateway();
-		ArrayList<BookRecord> records = gateway.getBooksForMember(3);
-		assertEquals(0, records.size());
+		ArrayList<String> isbns = gateway.getBooksForMember(3);
+		assertEquals(0, isbns.size());
 	}
 }

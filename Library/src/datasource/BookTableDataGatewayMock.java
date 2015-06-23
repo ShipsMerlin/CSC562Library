@@ -29,7 +29,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		return singleton;
 	}
 
-	private Hashtable<Integer, ArrayList<BookRecord>> data;
+	private Hashtable<Integer, ArrayList<String>> data;
 
 	/**
 	 * build the mock data from AdventuresForTest
@@ -39,25 +39,23 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		resetData();
 	}
 
-	
 	/**
 	 * @see datasource.BookTableDataGateway#resetData()
 	 */
 	public void resetData()
 	{
-		data = new Hashtable<Integer, ArrayList<BookRecord>>();
+		data = new Hashtable<Integer, ArrayList<String>>();
 		for (BooksForTest a : BooksForTest.values())
 		{
-			BookRecord rec = new BookRecord(a.getBookID(),a.getISBN(),a.getTitle(), a.getAuthor(), a.getMemberID());
 			int key = a.getMemberID();
 			if (data.containsKey(key))
 			{
-				ArrayList<BookRecord> x = data.get(key);
-				x.add(rec);
+				ArrayList<String> x = data.get(key);
+				x.add(a.getISBN());
 			} else
 			{
-				ArrayList<BookRecord> x = new ArrayList<BookRecord>();
-				x.add(rec);
+				ArrayList<String> x = new ArrayList<String>();
+				x.add(a.getISBN());
 				data.put(key, x);
 			}
 		}
@@ -67,7 +65,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 	 * @see datasource.BookTableDataGateway#getBooksForMember(int)
 	 */
 	@Override
-	public ArrayList<BookRecord> getBooksForMember(int memberID)
+	public ArrayList<String> getBooksForMember(int memberID)
 			throws DatabaseException
 	{
 		if (data.containsKey(memberID))
@@ -75,7 +73,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 			return data.get(memberID);
 		} else
 		{
-			return new ArrayList<BookRecord>();
+			return new ArrayList<String>();
 		}
 	}
 }

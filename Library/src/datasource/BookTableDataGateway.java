@@ -13,12 +13,12 @@ public interface BookTableDataGateway
 {
 
 	/**
-	 * Get info of all of the books checked out by a given member
+	 * Get ISBNs all of the books checked out by a given member
 	 * @param memberID the member
 	 * @return all of the adventure states
 	 * @throws DatabaseException  if we can't get the info from the data source
 	 */
-	ArrayList<BookRecord> getBooksForMember(int memberID) throws DatabaseException;
+	ArrayList<String> getBooksForMember(int memberID) throws DatabaseException;
 	
 	/**
 	 * reset the data back to the data in BooksForTest
