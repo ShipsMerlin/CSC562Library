@@ -11,21 +11,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.CommandFindMember;
+import model.FindMemberResponseReport;
+import model.ModelFacade;
+import model.QualifiedObservableConnector;
+import model.QualifiedObservableReport;
+import model.QualifiedObserver;
+
 /**
  * @author em1419
  *
  */
-public class CheckoutBookGUI extends JPanel implements ActionListener
+public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 {
 
 	private static JFrame jFrame;
-
+	public JButton memberSearchButton;
+	public JTextField memberSearchTextField;
+	/**
+	 * 
+	 */
+	public CheckoutBookGUI() {
+		QualifiedObservableConnector.getSingleton().registerObserver(this, FindMemberResponseReport.class);
+	}
+	
+	
 	/**
 	 * Creates the components for the Checkout Book GUI
 	 * 
 	 * @return
 	 */
-	JPanel createAndShowGUI()
+	public JPanel createAndShowGUI()
 	{
 		jFrame = new JFrame("CheckoutSwing");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,15 +60,28 @@ public class CheckoutBookGUI extends JPanel implements ActionListener
 
 		JLabel label3 = new JLabel("");
 		label3.setName("Spacer");
-		JButton memberSearchButton = new JButton("Search");
+		
+		memberSearchTextField = new JTextField(20);
+		memberSearchTextField.setName("txtMemberSearch");
+		
+		memberSearchButton = new JButton("Search");
 		memberSearchButton.setName("btnSearchMember");
+		memberSearchButton.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandFindMember command = new CommandFindMember(Integer.parseInt(memberSearchTextField.getText()));
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
 
-		final JTextField x = new JTextField(20);
-		x.setName("txtMemberSearch");
+		
 
 		memberPanel.add(memberLabel);
 		memberPanel.add(label3);
-		memberPanel.add(x);
+		memberPanel.add(memberSearchTextField);
 		memberPanel.add(memberSearchButton);
 		content.add(memberPanel);
 
@@ -131,10 +160,10 @@ public class CheckoutBookGUI extends JPanel implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void receiveReport(QualifiedObservableReport report)
 	{
-		// TODO Auto-generated method stub
-
+		System.out.println("Received report");
+		
 	}
 
 }

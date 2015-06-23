@@ -2,8 +2,11 @@ package model;
 
 import static org.junit.Assert.*;
 
+import org.easymock.EasyMock;
 import org.junit.Test;
 
+import view.CheckoutBookGUI;
+import view.ComponentMap;
 import datasource.DatabaseException;
 import datasource.MembersForTest;
 
@@ -19,16 +22,34 @@ public class CommandFindMemberTest
 	 */
 	@Test
 	public void test() throws DatabaseException
-	{
-		// create a member using MembersForTest
-		Member m = new Member(MembersForTest.ANDY.getMemberID());
-		MemberList ml = new MemberList();
-		ml.addMember(m.getMemberName());
+	{	
+		QualifiedObserver mockedObserver = EasyMock.createMock(QualifiedObserver.class);
+		QualifiedObservableConnector connector = QualifiedObservableConnector.getSingleton();
 		
-		CommandFindMember command = new CommandFindMember();
-		String memberName = command.getMember(m.getMemberID());
+		connector.registerObserver(mockedObserver, FindMemberResponseReport.class);
 		
-		assertEquals(m.getMemberName(), memberName);
+		FindMemberResponseReport mockReport = new FindMemberResponseReport(MembersForTest.MERLIN.getMemberID(), MembersForTest.MERLIN.getMemberName());
+		
+		mockedObserver.receiveReport(mockReport);
+		EasyMock.replay(mockedObserver);
+		
+//		connector.sendReport(new FindMemberResponseReport(2, "Merlin"));
+
+		CommandFindMember cmd = new CommandFindMember(MembersForTest.MERLIN.getMemberID());
+		cmd.execute();
+		
+//		CheckoutBookGUI gui = new CheckoutBookGUI();
+//		gui.createAndShowGUI();
+//		gui.memberSearchTextField.setText("2");
+//		gui.memberSearchButton.doClick();
+//		
+//		try {
+//			Thread.sleep(250);
+//		} catch (InterruptedException e){
+//			System.out.println(e.getStackTrace());
+//		}
+		
+		EasyMock.verify(mockedObserver);
 	}
 
 }
