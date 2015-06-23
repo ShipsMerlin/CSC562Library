@@ -23,7 +23,7 @@ public class Member
 	{
 		this.dataMapper = new MemberDataMapper(memberID);
 	}
-
+	
 	/**
 	 * Add a book to the list of books this member has checked out
 	 * @param book the book
