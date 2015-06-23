@@ -3,6 +3,7 @@ package datasource;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Test;
@@ -76,7 +77,7 @@ public abstract class BookRowDataGatewayTest extends DatabaseTest
 	@Test
 	public void creation() throws DatabaseException
 	{
-		gateway = createGateway("999999999","Methusulah", "Great Writer", 5);
+		gateway = createGateway("999999999", "Methusulah", "Great Writer", 5);
 
 		BookRowDataGateway after = findGateway(gateway.getISBN());
 
@@ -91,12 +92,16 @@ public abstract class BookRowDataGatewayTest extends DatabaseTest
 	 * 
 	 * @param name
 	 *            the new book's name
-	 * @param title the book's title
-	 * @param author the book's author
-	 * @param memberID the member that has the book checked out
+	 * @param title
+	 *            the book's title
+	 * @param author
+	 *            the book's author
+	 * @param memberID
+	 *            the member that has the book checked out
 	 * @return a gateway for the new row
 	 */
-	abstract BookRowDataGateway createGateway(String name, String title, String author, int memberID);
+	abstract BookRowDataGateway createGateway(String name, String title,
+			String author, int memberID);
 
 	/**
 	 * make sure we get the right exception if we try to find someone who
@@ -112,7 +117,8 @@ public abstract class BookRowDataGatewayTest extends DatabaseTest
 	}
 
 	/**
-	 * @throws DatabaseException shouldn't
+	 * @throws DatabaseException
+	 *             shouldn't
 	 */
 	@Test
 	public void canChangeMemberID() throws DatabaseException
@@ -120,8 +126,23 @@ public abstract class BookRowDataGatewayTest extends DatabaseTest
 		gateway = findGateway(BooksForTest.FINDERS_KEEPERS.getISBN());
 		gateway.setMemberID(42);
 		gateway.persist();
-		
-		BookRowDataGateway after = findGateway(BooksForTest.FINDERS_KEEPERS.getISBN());
+
+		BookRowDataGateway after = findGateway(BooksForTest.FINDERS_KEEPERS
+				.getISBN());
 		assertEquals(42, after.getMemberID());
+
+		ArrayList<String> isbns = findTableGateway().getBooksForMember(42);
+		assertEquals(1, isbns.size());
+		assertEquals(BooksForTest.FINDERS_KEEPERS.getISBN(), isbns.get(0));
 	}
+
+	/**
+	 * This is used to make sure that the data that is persisted by the row data
+	 * gateway is also persisted to the data source used by the table data
+	 * gateway
+	 * 
+	 * @return the table data gateway that functions like the row data gateway
+	 *         we are testing.
+	 */
+	abstract BookTableDataGateway findTableGateway();
 }

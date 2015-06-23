@@ -29,4 +29,13 @@ public class BookRowDataGatewayMockTest extends BookRowDataGatewayTest
 		return new BookRowDataGatewayMock(isbn, title, author, memberID);
 	}
 
+	/**
+	 * @see datasource.BookRowDataGatewayTest#findTableGateway()
+	 */
+	@Override
+	BookTableDataGateway findTableGateway()
+	{
+		return BookTableDataGatewayMock.getSingleton();
+	}
+
 }

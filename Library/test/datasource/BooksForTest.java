@@ -21,7 +21,7 @@ public enum BooksForTest
 	/**
 	 * 
 	 */
-	FINDERS_KEEPERS(3, "", "Finders Keepers", "Stephen King", 0);
+	FINDERS_KEEPERS(3, "12121212", "Finders Keepers", "Stephen King", 0);
 
 	private int bookID;
 
