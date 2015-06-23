@@ -47,6 +47,9 @@ static final String CHECKOUT_BUTTON = "checkoutButton";
 *AddBook_BUTTON
 */
 static final String MEMBER_CARD = "memberPanel";
+/**
+ * 
+ */
 static final String AddMember_CARD = "AddMemberPanel";
 private static final String AddBook_BUTTON = null;
 private static JFrame frame;
@@ -114,7 +117,7 @@ return card;
 	JButton buttonAddMember = new JButton("Add");
 	buttonAddMember.setName(AddBook_BUTTON);
 	buttonAddMember.addActionListener(new ActionListener()
-	{
+		{
 		public void actionPerformed(ActionEvent e)
 		{
 			CardLayout cl = (CardLayout) (cards.getLayout());
