@@ -2,38 +2,59 @@ package model;
 
 import java.util.ArrayList;
 
+import datasource.DatabaseException;
+
+/**
+ * Holds the information about one member of our library
+ * 
+ *
+ */
 public class Member
 {
 
-	private String memberName;
-	private int memberID;
+	private MemberDataMapper dataMapper;
+	
+	/**
+	 * @param memberID the unique ID of the member we are modeling
+	 * @throws DatabaseException if we can't find the given member in the data source
+	 *  
+	 */
+	public Member(int memberID) throws DatabaseException
+	{
+		this.dataMapper = new MemberDataMapper(memberID);
+	}
+
+	/**
+	 * Add a book to the list of books this member has checked out
+	 * @param book the book
+	 */
+	public void checkOutBook(Book book)
+	{
+		dataMapper.addISBN(book.getISBN());
+	}
+
+	/**
+	 * @return the list of books the member currently has checked out
+	 */
+	public ArrayList<String> getBooksCheckedOut()
+	{
+		return dataMapper.getISBNs();
+	}
+
+	/**
+	 * @return the member's unique ID
+	 */
 	public int getMemberID()
 	{
-		return memberID;
+		return dataMapper.getMemberID();
 	}
 
-	private ArrayList<Book> booksCheckedOut;
-
-	public Member(int memberID, String memberName)
-	{
-		this.memberID = memberID;
-		this.memberName = memberName;
-		this.booksCheckedOut = new ArrayList<Book>();
-	}
-
+	/**
+	 * @return the member's name
+	 */
 	public String getMemberName()
 	{
-		return memberName;
-	}
-
-	public ArrayList<Book> getBooksCheckedOut()
-	{
-		return booksCheckedOut;
-	}
-
-	public void addBook(Book book)
-	{
-		booksCheckedOut.add(book);
+		return dataMapper.getMemberName();
 	}
 
 }

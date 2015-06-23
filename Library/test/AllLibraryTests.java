@@ -1,10 +1,12 @@
 import model.MemberDataMapperTest;
+import model.MemberTest;
 import model.QualifiedObserverConnectorTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import view.RunnerTestMocked;
+import view.TestCheckoutBookGUI;
 import datasource.BookRowDataGatewayMockTest;
 import datasource.BookTableDataGatewayMockTest;
 import datasource.MemberRowDataGatewayMockTest;
@@ -22,8 +24,7 @@ import datasource.MemberRowDataGatewayMockTest;
 @Suite.SuiteClasses(
 {
 
-// datasource
-
+	// datasource
 	BookRowDataGatewayMockTest.class,
 	//BookRowDataGatewayTest.class,
 	//BooksForTest.class,
@@ -31,16 +32,19 @@ import datasource.MemberRowDataGatewayMockTest;
 	//BookTableDataGatewayTest.class,
 	// DatabaseTest.class
 	MemberRowDataGatewayMockTest.class,
-		// MemberRowDataGatewayTest.class,
-		// MembersForTest.class,
+	// MemberRowDataGatewayTest.class,
+	// MembersForTest.class,
 
-		// model
-		MemberDataMapperTest.class,
-		QualifiedObserverConnectorTest.class,
+	// model
+	MemberDataMapperTest.class,
+	MemberTest.class,
+	QualifiedObserverConnectorTest.class,
 
-		// View
-		// ComponentMap.class
-		RunnerTestMocked.class, })
+	// View
+	// ComponentMap.class
+	RunnerTestMocked.class,
+	TestCheckoutBookGUI.class
+})
 public class AllLibraryTests
 {
 }

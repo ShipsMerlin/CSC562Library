@@ -25,7 +25,7 @@ public class Book
 	/**
 	 * @return the book's ISBN
 	 */
-	public String getIsbn() 
+	public String getISBN() 
 	{
 		return gatewayMock.getISBN();
 	}

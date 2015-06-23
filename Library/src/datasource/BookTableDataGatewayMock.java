@@ -29,23 +29,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		return singleton;
 	}
 
-	private class BookInfo
-	{
-		public BookInfo(int bookID, String iSBN, String title, String author)
-		{
-			super();
-			this.bookID = bookID;
-			ISBN = iSBN;
-			this.title = title;
-			this.author = author;
-		}
-		private int bookID;
-		private String ISBN;
-		private String title;
-		private String author;
-		
-	}
-	private Hashtable<Integer, ArrayList<BookInfo>> data;
+	private Hashtable<Integer, ArrayList<String>> data;
 
 	/**
 	 * build the mock data from AdventuresForTest
@@ -55,25 +39,23 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 		resetData();
 	}
 
-	
 	/**
 	 * @see datasource.BookTableDataGateway#resetData()
 	 */
 	public void resetData()
 	{
-		data = new Hashtable<Integer, ArrayList<BookInfo>>();
+		data = new Hashtable<Integer, ArrayList<String>>();
 		for (BooksForTest a : BooksForTest.values())
 		{
-			BookInfo rec = new BookInfo(a.getBookID(),a.getISBN(),a.getTitle(), a.getAuthor());
 			int key = a.getMemberID();
 			if (data.containsKey(key))
 			{
-				ArrayList<BookInfo> x = data.get(key);
-				x.add(rec);
+				ArrayList<String> x = data.get(key);
+				x.add(a.getISBN());
 			} else
 			{
-				ArrayList<BookInfo> x = new ArrayList<BookInfo>();
-				x.add(rec);
+				ArrayList<String> x = new ArrayList<String>();
+				x.add(a.getISBN());
 				data.put(key, x);
 			}
 		}
@@ -88,12 +70,7 @@ public class BookTableDataGatewayMock implements BookTableDataGateway
 	{
 		if (data.containsKey(memberID))
 		{
-			ArrayList<String> isbns = new ArrayList<String>();
-			for (BookInfo info:data.get(memberID))
-			{
-				isbns.add(info.ISBN);
-			}
-			return isbns;
+			return data.get(memberID);
 		} else
 		{
 			return new ArrayList<String>();

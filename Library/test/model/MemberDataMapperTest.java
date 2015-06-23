@@ -25,10 +25,9 @@ public class MemberDataMapperTest
 	public void test() throws DatabaseException
 	{
 		MemberDataMapper mapper = new MemberDataMapper(MembersForTest.MERLIN.getMemberID());
-		Member m = mapper.getMember();
-		assertEquals(MembersForTest.MERLIN.getMemberName(), m.getMemberName());
-		assertEquals(MembersForTest.MERLIN.getMemberID(), m.getMemberID());
-		ArrayList<Book> books = m.getBooksCheckedOut(); 
+		assertEquals(MembersForTest.MERLIN.getMemberName(), mapper.getMemberName());
+		assertEquals(MembersForTest.MERLIN.getMemberID(), mapper.getMemberID());
+		ArrayList<String> books = mapper.getISBNs();
 		assertEquals(2, books.size());
 	}
 	
@@ -40,10 +39,10 @@ public class MemberDataMapperTest
 	public void testNoBooks() throws DatabaseException
 	{
 		MemberDataMapper mapper = new MemberDataMapper(MembersForTest.JOSH.getMemberID());
-		Member m = mapper.getMember();
-		assertEquals(MembersForTest.JOSH.getMemberName(), m.getMemberName());
-		assertEquals(MembersForTest.JOSH.getMemberID(), m.getMemberID());
-		ArrayList<Book> books = m.getBooksCheckedOut(); 
+		
+		assertEquals(MembersForTest.JOSH.getMemberName(), mapper.getMemberName());
+		assertEquals(MembersForTest.JOSH.getMemberID(), mapper.getMemberID());
+		ArrayList<String> books = mapper.getISBNs(); 
 		assertEquals(0, books.size());
 	}
 
