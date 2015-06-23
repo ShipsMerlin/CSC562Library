@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,17 +12,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * @author bwiens
+ * @author em1419
  *
  */
-public class CheckoutBookGUI {
+public class CheckoutBookGUI extends JPanel implements ActionListener {
 
 	private static JFrame jFrame;
 
 	/**
 	 * Creates the components for the Checkout Book GUI
+	 * @return 
 	 */
-	void createAndShowGUI()
+	JPanel createAndShowGUI()
 	{
 		jFrame = new JFrame("CheckoutSwing");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,12 +81,23 @@ public class CheckoutBookGUI {
 		 */
 		JButton checkoutbutton = new JButton("Checkout");
 		checkoutbutton.setName("btnCheckout");
+		checkoutbutton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		content.add(checkoutbutton);
 
 		jFrame.getContentPane().add(content);
 		jFrame.pack();
 		jFrame.setVisible(true);
+		
+		return content;
 	}
 
 	/**
@@ -110,6 +124,12 @@ public class CheckoutBookGUI {
 				gui.createAndShowGUI();
 			}
 		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
