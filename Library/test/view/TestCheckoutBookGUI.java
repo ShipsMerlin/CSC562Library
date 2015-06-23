@@ -6,8 +6,15 @@ import javax.swing.JTextField;
 
 import org.junit.Test;
 
+/**
+ * @author Manal
+ *
+ */
 public class TestCheckoutBookGUI {
 
+	/**
+	 * 
+	 */
 	@Test
 	public void test() {
 		CheckoutBookGUI gui = new CheckoutBookGUI();

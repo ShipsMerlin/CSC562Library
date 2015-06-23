@@ -4,31 +4,33 @@ import datasource.MemberRowDataGatewayMock;
 import datasource.DatabaseException;
 
 /**
- * @author Manal
+ * @author Manal Ibrahim
  *
  */
 public class MemberList 
 {
-
-
-
-
 	/**
-	 * @param memberName
-	 * @return memberRowDataGatewayMock.addMemberName
+	 * 
 	 */
-	public String addMember(String memberName) {
-		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock ( memberName);
-		return memberRowDataGatewayMock.addMemberName();
-	}
+	public String memberName;
 	/**
+	 * @param string 
 	 * @param memberName
-	 * @return memberRowDataGatewayMock.addMemberName
+	 * @return 
+	 */
+	public int addMember(String memberName) {
+		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock ( memberName);
+		return memberRowDataGatewayMock.getMemberID();
+	}
+	
+	
+	/**
+	 * @return memberRowDataGatewayMock
 	 * @throws DatabaseException
 	 */
-	public String getBook (String memberName) throws DatabaseException {
-		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock( memberName);
-		return memberRowDataGatewayMock.addMemberName();
+	public String getMemberName(int memberID) throws DatabaseException {
+		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock(memberID);
+		return memberRowDataGatewayMock.getMemberName();
 
 	}
 }
