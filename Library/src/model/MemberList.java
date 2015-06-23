@@ -18,7 +18,6 @@ public class MemberList
 	 * @return memberRowDataGatewayMock.addMemberName
 	 */
 	public String addMember(String memberName) {
-		//String memberName=null;
 		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock ( memberName);
 		return memberRowDataGatewayMock.addMemberName();
 	}
@@ -28,7 +27,6 @@ public class MemberList
 	 * @throws DatabaseException
 	 */
 	public String getBook (String memberName) throws DatabaseException {
-		//String memberName=null;
 		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock( memberName);
 		return memberRowDataGatewayMock.addMemberName();
 
