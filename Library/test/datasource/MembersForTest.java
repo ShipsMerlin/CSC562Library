@@ -101,6 +101,7 @@ public enum MembersForTest
 	 */
 	public String getMemberName()
 	{
+		
 		return memberName;
 	}
 
