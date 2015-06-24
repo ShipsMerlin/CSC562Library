@@ -140,7 +140,7 @@ public class MemberGUI
 		BookPanel.setName("BookPanel");
 		BookPanel.setLayout(new GridLayout(1, 2));
 		JLabel BookLabel = new JLabel("Disply Book ");
-		BookLabel.setName("DisplyBook");
+		BookLabel.setName("Displybook");
 		JTextField BookText = new JTextField("");
 		BookText.setName("DisplyBook");
 		BookPanel.add(BookLabel);

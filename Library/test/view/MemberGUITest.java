@@ -81,8 +81,8 @@ public class MemberGUITest
 				 */
 				
 				// Make sure Member label is on the screen
-				JLabel BookLabel = (JLabel) componentMap.getComponentByName("DisplyBook");
-				assertEquals("DisplyBook", BookLabel.getName());
+				JLabel BookLabel = (JLabel) componentMap.getComponentByName("Displybook");
+				assertEquals("Displybook", BookLabel.getName());
 				
 				// Make sure Member TextField is on the screen
 				JTextField BookText = (JTextField) componentMap.getComponentByName("DisplyBook");
