@@ -96,6 +96,8 @@ public class MemberGUITest
 		pause();
 		memberIDButton.doClick();
 		pause();
+		memberNameButton1.doClick();
+		pause();
 
 		
 		// do we get to the Add member screen?
