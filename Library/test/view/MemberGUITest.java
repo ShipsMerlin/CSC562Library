@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 import org.junit.Test;
 
+import datasource.MembersForTest;
+
 /**
  * @author Evania Mans,Saad,Mohammed
  *
@@ -19,7 +21,8 @@ public class MemberGUITest
 {
 
 	/**
-	 * 
+	 * Tests the MemberGUI
+	 * Makes sure the components are on the screen and tests the buttons.
 	 */
 	@Test
 	public void test() {
@@ -29,101 +32,83 @@ public class MemberGUITest
 		gui.createAndShowGUI();
 		ComponentMap componentMap = new ComponentMap(gui.memberCard);
 		
-		// Make sure Member label is on the screen
-		JLabel label = (JLabel) componentMap.getComponentByName("MemberName");
-		assertEquals("MemberName", label.getName());
-		
-		// Make sure Member TextField is on the screen
-		JTextField textField = (JTextField) componentMap.getComponentByName("txtMemberName");
-		assertEquals("txtMemberName", textField.getName());
-		
-		// Make sure Add button is on the screen
-		JButton button = (JButton) componentMap.getComponentByName("btnSearchMember");
-		assertEquals("btnSearchMember", button.getName());
 		/**
-		 * 
+		 * Make sure the Add Member components are on the screen
+		 */
+		
+		JLabel addMemberLabel = (JLabel) componentMap.getComponentByName("AddMemberName");
+		assertNotNull(addMemberLabel);
+		
+		JTextField addMemberText = (JTextField) componentMap.getComponentByName("txtAddMemberName");
+		assertNotNull(addMemberText);
+		
+		JButton addMemberButton = (JButton) componentMap.getComponentByName("btnAddMember");
+		assertNotNull(addMemberButton);
+		
+		/**
+		 * Make sure the Search Member components are on the screen
 		 * 
 		 */
 		
-		// Make sure Member label is on the screen
-				JLabel MemberIDLabel = (JLabel) componentMap.getComponentByName("MemberId");
-				assertEquals("MemberId", MemberIDLabel.getName());
-				
-				// Make sure Member TextField is on the screen
-				JTextField MemberIDText = (JTextField) componentMap.getComponentByName("MemberID");
-				assertEquals("MemberID", MemberIDText.getName());
-				
-				// Make sure Add button is on the screen
-				JButton memberIDButton = (JButton) componentMap.getComponentByName("btnMemberID");
-				assertEquals("btnMemberID", memberIDButton.getName());
-				
-				/**
-				 * 
-				 * 
-				 */
-				
-				
-				// Make sure Member label is on the screen
-				JLabel MemberNameLabel1 = (JLabel) componentMap.getComponentByName("DisplyMemberN");
-				assertEquals("DisplyMemberN", MemberNameLabel1.getName());
-				
-				// Make sure Member TextField is on the screen
-				JTextField MemberNameText1 = (JTextField) componentMap.getComponentByName("DisplyMemberName");
-				assertEquals("DisplyMemberName", MemberNameText1.getName());
-				
-				// Make sure Add button is on the screen
-				JButton memberNameButton1 = (JButton) componentMap.getComponentByName("btnMemberName");
-				assertEquals("btnMemberName", memberNameButton1.getName());
-				
-				/**
-				 * 
-				 * 
-				 */
-				
-				// Make sure Member label is on the screen
-				JLabel BookLabel = (JLabel) componentMap.getComponentByName("Displybook");
-				assertEquals("Displybook", BookLabel.getName());
-				
-				// Make sure Member TextField is on the screen
-				JTextField BookText = (JTextField) componentMap.getComponentByName("DisplyBook");
-				assertEquals("DisplyBook", BookText.getName());
+		JLabel searchMemberLabel = (JLabel) componentMap.getComponentByName("lblSearchMemberId");
+		assertNotNull(searchMemberLabel);
+		
+		JTextField searchMemberText = (JTextField) componentMap.getComponentByName("txtSearchMemberID");
+		assertNotNull(searchMemberText);
+		
+		JButton searchMemberButton = (JButton) componentMap.getComponentByName("btnMemberSearch");
+		assertNotNull(searchMemberButton);
+		
+		/**
+		 * Make sure the Display Member components are on the screen
+		 * 
+		 */
+		
+		
+		JLabel displayMemberNameLabel = (JLabel) componentMap.getComponentByName("DisplyMemberNameLabel");
+		assertNotNull(displayMemberNameLabel);
+		
+		JTextField displayMemberNameText = (JTextField) componentMap.getComponentByName("DisplyMemberNameText");
+		assertNotNull(displayMemberNameText);
+		
+		JButton deleteMemberButton = (JButton) componentMap.getComponentByName("btnDeleteMember");
+		assertNotNull(deleteMemberButton);
+		
+		/**
+		 * Make sure Book display components are on the screen
+		 * 
+		 */
+		
+		JLabel BookLabel = (JLabel) componentMap.getComponentByName("DisplaybookLabel");
+		assertNotNull(BookLabel);
+		
+		JTextField BookText = (JTextField) componentMap.getComponentByName("DisplayBookText");
+		assertNotNull(BookText);
 				
 				
 				
 		
-		// click AddMember Button
-		button.doClick();
+		// Try adding 'New Member' to the list of members
+		gui.addMemberNameTextField.setText("New Member");
+		addMemberButton.doClick();	// click AddMember Button
 		pause();
-		memberIDButton.doClick();
+		
+		// Does the Display Member Name textbox show 'New Member'?
+		assertEquals("New Member", gui.txtDisplayMemberName.getText());
+		
+		// Try searching for a member that already exists
+		gui.searchMemberIDText.setText(Integer.toString(MembersForTest.ANDY.getMemberID()));
+		searchMemberButton.doClick();
 		pause();
-		memberNameButton1.doClick();
-		pause();
+		
+		// Does the Display Member Name textbox show 'New Member'?
+		assertEquals(MembersForTest.ANDY.getMemberName(), gui.txtDisplayMemberName.getText());
+		
+		// Try deleting a Member from the list of Members
+		//deleteMemberButton.doClick();
+		//pause();
 
-		
-		// do we get to the Add member screen?
-		assertEquals(Runner.MEMBER_CARD, gui.memberCard.getName());
 	}
-	
-	
-	/**
-	 * make sure that the book button on the main panel causes the book panel to
-	 * be displayed
-	 */
-
-	/*@Test
-	public void testMembersButton()
-	{
-		Runner r = new Runner();
-		r.createAndShowGUI();
-		assertEquals(Runner.MAIN_CARD, r.getVisibleCard().getName());
-		ComponentMap componentMap = new ComponentMap(Runner.getFrame());
-		JButton theButton = (JButton) componentMap
-				.getComponentByName(Runner.MEMBER_BUTTON);
-		theButton.doClick();
-
-		pause();
-		assertEquals(Runner.MEMBER_CARD, r.getVisibleCard().getName());
-	}*/
 
 	private void pause()
 	{
