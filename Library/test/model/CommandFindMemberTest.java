@@ -1,6 +1,7 @@
 package model;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
 
 import datasource.DatabaseException;
@@ -12,6 +13,15 @@ import datasource.MembersForTest;
  */
 public class CommandFindMemberTest
 {
+	
+	/**
+	 * Reset the necessary singletons
+	 */
+	@Before
+	public void setup()
+	{
+		QualifiedObservableConnector.resetSingleton();
+	}
 
 	/**
 	 * Tests to make sure that when the Command is executed, a FindMemberResponseReport is generated and sent to any
