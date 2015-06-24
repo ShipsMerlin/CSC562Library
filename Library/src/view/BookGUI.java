@@ -1,11 +1,6 @@
 package view;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -124,22 +119,20 @@ public class BookGUI
 		bottomPanel.add(bottomRightPanel);
 		bookCard.add(bottomPanel);
 		
-		// ----------------------------- before the breack
-//		buttonAddMember.addActionListener(new ActionListener()
-//		{
-	//		public void actionPerformed(ActionEvent e)
-	//		{
-	//			CardLayout cl = (CardLayout) (contentPane.getLayout());
-	//			cl.show(contentPane, "bookPanel");
-		//	}
+		/** Do we need an ActionListener here?
+		buttonAddMember.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+			CardLayout cl = (CardLayout) (contentPane.getLayout());
+			cl.show(contentPane, "bookPanel");
+    	}
 
-	//	});
-		//AddFieldPanel.add(buttonAddMember);
-		//topPanel.add(AddButtonPanel);
-		//-----------------------------
+		});
+		AddFieldPanel.add(buttonAddMember);
+		topPanel.add(AddButtonPanel);
+		**/
 		
-
-		//bookCard.add(buttonAddMember);
 		return bookCard;
 	}
 }
