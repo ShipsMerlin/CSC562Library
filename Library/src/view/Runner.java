@@ -55,6 +55,10 @@ public class Runner
  * 
  */
 	static final String ADDMEMBER_BUTTON = "AddMemberButton";
+	/**
+	 * 
+	 */
+	static final String ADDMEMBERId_BUTTON = "AddMemberIdButton";
 	private static final String ADDBOOK_BUTTON = "AddBookButton";
 	private static JFrame frame;
 	private static JPanel cards;
