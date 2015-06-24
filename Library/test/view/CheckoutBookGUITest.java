@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 
 import org.junit.Test;
 
+import datasource.MembersForTest;
+
 /**
  * @author Evania Mans
  *
@@ -63,6 +65,29 @@ public class CheckoutBookGUITest
 				.getComponentByName("btnCheckout");
 		assertNotNull(button3);
 
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testSearchForMember() {
+		CheckoutBookGUI gui = new CheckoutBookGUI();
+		gui.createAndShowGUI();
+		gui.memberSearchTextField.setText(Integer.toString(MembersForTest.ANDY.getMemberID()));
+		gui.memberSearchButton.doClick();
+		pause();
+		assertEquals(MembersForTest.ANDY.getMemberName(), gui.memberSearchResult.getText());
+	}
+	
+	private void pause()
+	{
+		try
+		{
+			Thread.sleep(250);
+		} catch (InterruptedException e)
+		{
+		}
 	}
 
 }

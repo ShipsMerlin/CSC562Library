@@ -28,6 +28,7 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	private static JFrame jFrame;
 	public JButton memberSearchButton;
 	public JTextField memberSearchTextField;
+	public JTextField memberSearchResult;
 	/**
 	 * 
 	 */
@@ -77,12 +78,14 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 			}
 		});
 
-		
+		memberSearchResult = new JTextField();
+		memberSearchResult.setName("memberSearchResult");
 
 		memberPanel.add(memberLabel);
 		memberPanel.add(label3);
 		memberPanel.add(memberSearchTextField);
 		memberPanel.add(memberSearchButton);
+		memberPanel.add(memberSearchResult);
 		content.add(memberPanel);
 
 		/**
@@ -163,6 +166,13 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	public void receiveReport(QualifiedObservableReport report)
 	{
 		System.out.println("Received report");
+		if (report.getClass().equals(FindMemberResponseReport.class))
+		{
+			FindMemberResponseReport fmrr = (FindMemberResponseReport)report;
+			memberSearchResult.setText(fmrr.getMemberName());
+			//System.out.println(fmrr.getMemberName());
+		}
+		
 		
 	}
 

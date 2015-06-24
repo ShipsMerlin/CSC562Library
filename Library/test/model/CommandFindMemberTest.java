@@ -37,11 +37,6 @@ public class CommandFindMemberTest
 
 		CommandFindMember cmd = new CommandFindMember(MembersForTest.MERLIN.getMemberID());
 		cmd.execute();
-		
-//		CheckoutBookGUI gui = new CheckoutBookGUI();
-//		gui.createAndShowGUI();
-//		gui.memberSearchTextField.setText("2");
-//		gui.memberSearchButton.doClick();
 //		
 //		try {
 //			Thread.sleep(250);
