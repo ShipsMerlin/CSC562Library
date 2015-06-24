@@ -2,7 +2,10 @@ package model;
 
 import static org.junit.Assert.*;
 
+import org.easymock.EasyMock;
 import org.junit.Test;
+
+import datasource.MembersForTest;
 
 
 
@@ -13,15 +16,26 @@ import org.junit.Test;
 public class CommandAddMemberTest {
 
 	/**
-	 * 
+	 * Tests the command for adding a new member
 	 */
 	@Test
 	public void testAddMember() {
-		//fail("Not yet implemented");
+		String newMemberName = "NewMember";
 		
-		CommandAddMember command = new CommandAddMember();
-	//	assertFalse(command.execute());  to fill the exam
-		assertTrue(command.execute()); // to pass the exam
+		QualifiedObserver mockedObserver = EasyMock.createMock(QualifiedObserver.class);
+		QualifiedObservableConnector connector = QualifiedObservableConnector.getSingleton();
+		
+		connector.registerObserver(mockedObserver, MemberResponseReport.class);
+		
+		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.values().length+1, newMemberName);
+		
+		mockedObserver.receiveReport(mockReport);
+		EasyMock.replay(mockedObserver);
+		
+		CommandAddMember cmd = new CommandAddMember(newMemberName);
+		cmd.execute();
+		
+		EasyMock.verify(mockedObserver);
 		
 	}
 

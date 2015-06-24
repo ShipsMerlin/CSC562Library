@@ -12,14 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.CommandAddMember;
 import model.CommandFindMember;
+import model.MemberResponseReport;
 import model.ModelFacade;
+import model.QualifiedObservableConnector;
+import model.QualifiedObservableReport;
+import model.QualifiedObserver;
 
 /**
  * @author em1419
  *
  */
-public class MemberGUI
+public class MemberGUI implements QualifiedObserver
 
 {
 	private static JFrame jFrame;
@@ -30,7 +35,7 @@ public class MemberGUI
 	/**
 	 * 
 	 */
-	public JTextField memberNameTextField;
+	public JTextField addMemberNameTextField;
 	/**
 	 * 
 	 */
@@ -39,6 +44,14 @@ public class MemberGUI
 	 * 
 	 */
 	public JTextField memberIDTextField;
+	/**
+	 * 
+	 */
+	JTextField searchMemberIDText;
+	/**
+	 * 
+	 */
+	JTextField txtDisplayMemberName;
 	/**
 	 * 
 	 */
@@ -55,6 +68,7 @@ public class MemberGUI
 	{
 		contentPane = panel;
 		memberCard = createAndShowGUI();
+		QualifiedObservableConnector.getSingleton().registerObserver(this, MemberResponseReport.class);
 	}
 
 	/**
@@ -66,75 +80,87 @@ public class MemberGUI
 		
 		jFrame = new JFrame("MemberSwing");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
+		// main panel set up
 		JPanel content = new JPanel();
 		content.setLayout(new GridLayout(5, 1));
 		content.setName("MemberPanel");
 
 		/**
-		 * Adding all components for Member Search
+		 * Adding all components for Member Add
 		 */
-		JPanel memberPanel = new JPanel();
-		memberPanel.setName("memberPanel");
-		memberPanel.setLayout(new GridLayout(1, 3));
-		JLabel memberLabel = new JLabel("Member Name");
-		memberLabel.setName("MemberName");
-		memberNameTextField = new JTextField(20);
-		memberNameTextField.setName("txtMemberName");
-		memberNameButton = new JButton("add");
-		memberNameButton.setName("btnSearchMember");
+		JPanel addMemberPanel = new JPanel();
+		addMemberPanel.setName("addMemberPanel");
+		addMemberPanel.setLayout(new GridLayout(1, 3));
+		JLabel addMemberLabel = new JLabel("Member Name");
+		addMemberLabel.setName("AddMemberName");
+		addMemberNameTextField = new JTextField(20);
+		addMemberNameTextField.setName("txtAddMemberName");
+		memberNameButton = new JButton("Add");
+		memberNameButton.setName("btnAddMember");
 		memberNameButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandAddMember command = new CommandAddMember(addMemberNameTextField.getText());
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
+
+		addMemberPanel.add(addMemberLabel);
+
+		addMemberPanel.add(addMemberNameTextField);
+		addMemberPanel.add(memberNameButton);
+		content.add(addMemberPanel);
+			
+		/**
+		 * Adding all components for the Member Search
+		 */
+		
+		JPanel searchMemberPanel = new JPanel();
+		searchMemberPanel.setName("SearchMemberPanel");
+		searchMemberPanel.setLayout(new GridLayout(1, 3));
+		JLabel searchMemberIDLabel = new JLabel("Member Id");
+		searchMemberIDLabel.setName("lblSearchMemberId");
+		searchMemberIDText = new JTextField();
+		searchMemberIDText.setName("txtSearchMemberID");
+		JButton memberSearchButton = new JButton("Search");
+		memberSearchButton.setName("btnMemberSearch");
+		memberSearchButton.addActionListener(new ActionListener()
 		{
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				CommandFindMember command = new CommandFindMember(Integer.parseInt(memberNameTextField.getText()));
+				CommandFindMember command = new CommandFindMember(Integer.parseInt(searchMemberIDText.getText()));
 				ModelFacade.getSingleton().queueCommand(command);
 			}
 		});
-
-		memberPanel.add(memberLabel);
-
-		memberPanel.add(memberNameTextField);
-		memberPanel.add(memberNameButton);
-		content.add(memberPanel);
-			
-		/**
-		 * 
-		 */
 		
-		JPanel MemberPanel = new JPanel();
-		MemberPanel.setName("MemberPanel");
-		MemberPanel.setLayout(new GridLayout(1, 3));
-		JLabel MemberIDLabel = new JLabel("Member Id");
-		MemberIDLabel.setName("MemberId");
-		JTextField MemberIDText = new JTextField("");
-		MemberIDText.setName("MemberID");
-		JButton memberIDButton = new JButton("Search");
-		memberIDButton.setName("btnMemberID");
-		MemberPanel.add(MemberIDLabel);
-		MemberPanel.add(MemberIDText);
-		MemberPanel.add(memberIDButton);
-		content.add(MemberPanel);
+		searchMemberPanel.add(searchMemberIDLabel);
+		searchMemberPanel.add(searchMemberIDText);
+		searchMemberPanel.add(memberSearchButton);
+		content.add(searchMemberPanel);
 		
-		JPanel content1 = new JPanel();
-		content1.setLayout(new GridLayout(2, 1));
-		content1.setName("MemberPanel1");
 		
-		JPanel MemberPanel1 = new JPanel();
-		MemberPanel1.setName("MemberPanel1");
-		MemberPanel1.setLayout(new GridLayout(1, 3));
-		JLabel MemberNameLabel1 = new JLabel("Disply Member Name");
-		MemberNameLabel1.setName("DisplyMemberN");
-		JTextField MemberNameText1 = new JTextField("");
-		MemberNameText1.setName("DisplyMemberName");
-		JButton memberNameButton1 = new JButton("Delete");
-		memberNameButton1.setName("btnMemberName");
-		MemberPanel1.add(MemberNameLabel1);
-		MemberPanel1.add(MemberNameText1);
-		MemberPanel1.add(memberNameButton1);
-		MemberPanel.add(MemberPanel1);
+		JPanel displayMemberInfoPanel = new JPanel();
+		displayMemberInfoPanel.setLayout(new GridLayout(2, 1));
+		displayMemberInfoPanel.setName("DisplayMemberInfoPanel");
+		
+		JPanel memberNameDisplayPanel = new JPanel();
+		memberNameDisplayPanel.setName("MemberNameDisplayPanel");
+		memberNameDisplayPanel.setLayout(new GridLayout(1, 3));
+		JLabel lblMemberName = new JLabel("Disply Member Name");
+		lblMemberName.setName("DisplyMemberNameLabel");
+		txtDisplayMemberName = new JTextField("");
+		txtDisplayMemberName.setName("DisplyMemberNameText");
+		JButton btnDeleteMember = new JButton("Delete");
+		btnDeleteMember.setName("btnDeleteMember");
+		memberNameDisplayPanel.add(lblMemberName);
+		memberNameDisplayPanel.add(txtDisplayMemberName);
+		memberNameDisplayPanel.add(btnDeleteMember);
+		searchMemberPanel.add(memberNameDisplayPanel);
 		
 		JPanel BookPanel = new JPanel();
 		BookPanel.setName("BookPanel");
@@ -145,11 +171,24 @@ public class MemberGUI
 		BookText.setName("DisplyBook");
 		BookPanel.add(BookLabel);
 		BookPanel.add(BookText);
-		content1.add(MemberPanel1);
-		content1.add(BookPanel);
+		displayMemberInfoPanel.add(memberNameDisplayPanel);
+		displayMemberInfoPanel.add(BookPanel);
 
-		content.add(content1);
+		content.add(displayMemberInfoPanel);
 		return content;
+	}
+
+	@Override
+	public void receiveReport(QualifiedObservableReport report)
+	{
+		// TODO Auto-generated method stub
+		System.out.println("Received report");
+		if (report.getClass().equals(MemberResponseReport.class))
+		{
+			MemberResponseReport mrr = (MemberResponseReport)report;
+			txtDisplayMemberName.setText(mrr.getMemberName());
+			//System.out.println(fmrr.getMemberName());
+		}
 	}
 	
 
