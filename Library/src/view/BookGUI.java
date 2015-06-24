@@ -1,16 +1,29 @@
 package view;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.BookResponseReport;
+import model.CommandFindBook;
+import model.CommandFindMember;
+import model.MemberResponseReport;
+import model.ModelFacade;
+import model.QualifiedObservableConnector;
+import model.QualifiedObservableReport;
+import model.QualifiedObserver;
+
 /**
  * @author em1419
  *
  */
-public class BookGUI
+public class BookGUI implements QualifiedObserver
 {
 	/**
 	 * 
@@ -20,6 +33,15 @@ public class BookGUI
 	 * 
 	 */
 	JPanel bookCard;
+	
+	/**
+	 * 
+	 */
+	JTextField BookISBNBox;
+	/**
+	 * 
+	 */
+	JTextField bottomTitleTextField;
 
 	/**
 	 * Constructor 
@@ -29,6 +51,7 @@ public class BookGUI
 	{
 		contentPane = panel;
 		bookCard = createAndShowGUI();
+		QualifiedObservableConnector.getSingleton().registerObserver(this, BookResponseReport.class);
 	}
 
 	/**
@@ -84,31 +107,41 @@ public class BookGUI
 		//--------------------------------- End First part of the Book Card Adding Info -----------------
 		
 		JPanel searchFieldPanel = new JPanel(new GridLayout(1,3));
-		JLabel BookISBNLabel = new JLabel("Member ID:");
-		BookISBNLabel .setName("BookISBNField");
-		JTextField BookISBNBox =new JTextField(20);
-		BookISBNBox.setName("BookISBNLabel Box");
-		JButton buttonsearchMember = new JButton("Search");
-		buttonsearchMember.setName("SearchBookButton");
+		JLabel BookISBNLabel = new JLabel("Book ISBN:");
+		BookISBNLabel .setName("BookISBN");
+		BookISBNBox = new JTextField();
+		BookISBNBox.setName("BookISBNTextField Box");
+		JButton buttonSearchBooks = new JButton("Search");
+		buttonSearchBooks.setName("SearchBookButton");
+		buttonSearchBooks.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandFindBook command = new CommandFindBook(BookISBNBox.getText());
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
 		searchFieldPanel.add(BookISBNLabel );
 		searchFieldPanel.add(BookISBNBox);
-		searchFieldPanel.add(buttonsearchMember);
+		searchFieldPanel.add(buttonSearchBooks);
 		bookCard.add(searchFieldPanel);
 		
 	//--------------------------------- End First part of the Book Card Adding Info -----------------
 		JPanel bottomPanel = new JPanel(new GridLayout(1,2));
 		JPanel bottomInnerPanel = new JPanel(new GridLayout(2,2));
 		
-		JLabel bottomMemberNameLabel= new JLabel("Member Name:");
-		bottomMemberNameLabel.setName("MemberName");
-		JTextField bottomMemberTextField = new JTextField(20);
-		JLabel bottomBooksLabel = new JLabel("Books:");
-		bottomBooksLabel.setName("BooksLabel");
+		JLabel bottomTitleLabel= new JLabel("Title:");
+		bottomTitleLabel.setName("TitleName");
+		bottomTitleTextField = new JTextField(20);
+		JLabel bottomAuthorLabel = new JLabel("Author:");
+		bottomAuthorLabel.setName("AuthorLabel");
 		JTextField bottomBooksTextField = new JTextField(20);
 		bottomBooksTextField.setName("bookNameofDeletefield");
-		bottomInnerPanel.add(bottomMemberNameLabel);
-		bottomInnerPanel.add(bottomMemberTextField);
-		bottomInnerPanel.add(bottomBooksLabel);
+		bottomInnerPanel.add(bottomTitleLabel);
+		bottomInnerPanel.add(bottomTitleTextField);
+		bottomInnerPanel.add(bottomAuthorLabel);
 		bottomInnerPanel.add(bottomBooksTextField);
 		bottomPanel.add(bottomInnerPanel);
 		
@@ -134,5 +167,18 @@ public class BookGUI
 		**/
 		
 		return bookCard;
+	}
+
+	@Override
+	public void receiveReport(QualifiedObservableReport report)
+	{
+		// TODO Auto-generated method stub
+		System.out.println("Received report");
+		if (report.getClass().equals(BookResponseReport.class))
+		{
+			BookResponseReport mrr = (BookResponseReport)report;
+			bottomTitleTextField.setText(mrr.getBookTitle());
+			//System.out.println(fmrr.getMemberName());
+		}
 	}
 }
