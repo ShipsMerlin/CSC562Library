@@ -11,8 +11,11 @@ import javax.swing.JTextField;
 
 import org.junit.Test;
 
+import datasource.BooksForTest;
+import datasource.MembersForTest;
+
 /**
- * @author Evania Mans
+ * @author Benjamin Wiens
  *
  */
 public class BookGUITest
@@ -29,25 +32,47 @@ public class BookGUITest
 		ComponentMap componentMap = new ComponentMap(gui.bookCard);
 		
 		// Make sure Member label is on the screen
-		JLabel label = (JLabel) componentMap.getComponentByName("BookLabel");
-		assertEquals("BookLabel", label.getName());
+		JLabel label = (JLabel) componentMap.getComponentByName("AddBookLabel");
+		assertEquals("AddBookLabel", label.getName());
 		
 		// Make sure Member TextField is on the screen
-		JTextField textField = (JTextField) componentMap.getComponentByName("BookTextField");
-		assertEquals("BookTextField", textField.getName());
+		JTextField textField = (JTextField) componentMap.getComponentByName("authorBox");
+		assertEquals("authorBox", textField.getName());
 		
 		// Make sure Add button is on the screen
 		JButton button = (JButton) componentMap.getComponentByName("AddBookButton");
 		assertEquals("AddBookButton", button.getName());
 		
-		// click AddMember Button
+		// click AddBook Button
 		button.doClick();
 		pause();
 		
-		// do we get to the Add member screen?
+		// do we get to the Add book screen?
 		assertEquals(Runner.BOOK_CARD, gui.bookCard.getName());
-	}
 	
+		// Try adding 'New Books' to the list of Books
+		//gui.addMemberNameTextField.setText("New Member");
+		//addMemberButton.doClick();	// click AddMember Button
+		//pause();
+		
+		// Does the Display Member Name textbox show 'New Member'?
+		//assertEquals("New Member", gui.txtDisplayMemberName.getText());
+		
+		// Try searching for a book that already exists
+		gui.BookISBNBox.setText((BooksForTest.WELLINGTON.getISBN()));
+		JButton searchBookButton = (JButton) componentMap.getComponentByName("SearchBookButton");
+		searchBookButton.doClick();
+		pause();
+		
+		// Does the Display Member Name textbox show 'New Member'?
+		assertEquals(BooksForTest.WELLINGTON.getTitle(), gui.bottomTitleTextField.getText());
+		
+		// Try deleting a Member from the list of Members
+		//deleteMemberButton.doClick();
+		//pause();
+
+	}
+		
 	
 	/**
 	 * make sure that the book button on the main panel causes the book panel to

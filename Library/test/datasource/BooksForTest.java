@@ -30,6 +30,7 @@ public enum BooksForTest
 	private String title;
 
 	private String author;
+	
 	private int memberID;
 
 	private BooksForTest(int bookID, String isbn, String title, String author,
