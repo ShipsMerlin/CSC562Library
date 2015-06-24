@@ -2,7 +2,6 @@ package model;
 
 import static org.junit.Assert.*;
 
-import org.easymock.EasyMock;
 import org.junit.Test;
 
 import datasource.DatabaseException;

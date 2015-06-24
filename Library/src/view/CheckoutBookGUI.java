@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.CommandFindMember;
-import model.FindMemberResponseReport;
+import model.MemberResponseReport;
 import model.ModelFacade;
 import model.QualifiedObservableConnector;
 import model.QualifiedObservableReport;
@@ -26,21 +26,30 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 {
 
 	private static JFrame jFrame;
+	/**
+	 * 
+	 */
 	public JButton memberSearchButton;
+	/**
+	 * 
+	 */
 	public JTextField memberSearchTextField;
+	/**
+	 * 
+	 */
 	public JTextField memberSearchResult;
 	/**
 	 * 
 	 */
 	public CheckoutBookGUI() {
-		QualifiedObservableConnector.getSingleton().registerObserver(this, FindMemberResponseReport.class);
+		QualifiedObservableConnector.getSingleton().registerObserver(this, MemberResponseReport.class);
 	}
 	
 	
 	/**
 	 * Creates the components for the Checkout Book GUI
 	 * 
-	 * @return
+	 * @return - The newly created panel 
 	 */
 	public JPanel createAndShowGUI()
 	{
@@ -166,9 +175,9 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	public void receiveReport(QualifiedObservableReport report)
 	{
 		System.out.println("Received report");
-		if (report.getClass().equals(FindMemberResponseReport.class))
+		if (report.getClass().equals(MemberResponseReport.class))
 		{
-			FindMemberResponseReport fmrr = (FindMemberResponseReport)report;
+			MemberResponseReport fmrr = (MemberResponseReport)report;
 			memberSearchResult.setText(fmrr.getMemberName());
 			//System.out.println(fmrr.getMemberName());
 		}

@@ -40,7 +40,7 @@ public class CommandFindMember extends Command
 		String memberName = gateway.getMemberName();
 		
 		// create response report
-		FindMemberResponseReport report = new FindMemberResponseReport(memberId, memberName);
+		MemberResponseReport report = new MemberResponseReport(memberId, memberName);
 		
 		// send response report
 		QualifiedObservableConnector.getSingleton().sendReport(report);

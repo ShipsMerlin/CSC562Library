@@ -1,11 +1,12 @@
 package model;
 
 /**
- * Report that provides the member ID and name when searching for a member.
+ * Report that provides the member ID, name, and books checked out
+ * when searching for, adding, or deleting a member.
  * @author em1419
  *
  */
-public class FindMemberResponseReport implements QualifiedObservableReport
+public class MemberResponseReport implements QualifiedObservableReport
 {
 	/**
 	 * Member ID
@@ -20,7 +21,7 @@ public class FindMemberResponseReport implements QualifiedObservableReport
 	 * @param id - the member's ID
 	 * @param name - the member's name
 	 */
-	public FindMemberResponseReport(int id, String name) {
+	public MemberResponseReport(int id, String name) {
 		memberId = id;
 		memberName = name;
 	}
@@ -59,7 +60,7 @@ public class FindMemberResponseReport implements QualifiedObservableReport
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FindMemberResponseReport other = (FindMemberResponseReport) obj;
+		MemberResponseReport other = (MemberResponseReport) obj;
 		if (memberId != other.memberId)
 			return false;
 		if (memberName == null)

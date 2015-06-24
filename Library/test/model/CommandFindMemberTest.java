@@ -1,23 +1,22 @@
 package model;
 
-import static org.junit.Assert.*;
-
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import view.CheckoutBookGUI;
-import view.ComponentMap;
 import datasource.DatabaseException;
 import datasource.MembersForTest;
 
 /**
- * @author em1419
+ * @author Evania Mans
  *
  */
 public class CommandFindMemberTest
 {
 
 	/**
+	 * Tests to make sure that when the Command is executed, a FindMemberResponseReport is generated and sent to any
+	 * observers that are registered to receive that type of report are notified of changes. 
+	 * 
 	 * @throws DatabaseException
 	 */
 	@Test
@@ -26,23 +25,15 @@ public class CommandFindMemberTest
 		QualifiedObserver mockedObserver = EasyMock.createMock(QualifiedObserver.class);
 		QualifiedObservableConnector connector = QualifiedObservableConnector.getSingleton();
 		
-		connector.registerObserver(mockedObserver, FindMemberResponseReport.class);
+		connector.registerObserver(mockedObserver, MemberResponseReport.class);
 		
-		FindMemberResponseReport mockReport = new FindMemberResponseReport(MembersForTest.MERLIN.getMemberID(), MembersForTest.MERLIN.getMemberName());
+		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.MERLIN.getMemberID(), MembersForTest.MERLIN.getMemberName());
 		
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);
-		
-//		connector.sendReport(new FindMemberResponseReport(2, "Merlin"));
 
 		CommandFindMember cmd = new CommandFindMember(MembersForTest.MERLIN.getMemberID());
 		cmd.execute();
-//		
-//		try {
-//			Thread.sleep(250);
-//		} catch (InterruptedException e){
-//			System.out.println(e.getStackTrace());
-//		}
 		
 		EasyMock.verify(mockedObserver);
 	}
