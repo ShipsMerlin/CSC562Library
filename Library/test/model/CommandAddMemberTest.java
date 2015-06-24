@@ -1,25 +1,25 @@
 package model;
 
-import static org.junit.Assert.*;
-
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import datasource.DatabaseException;
 import datasource.MembersForTest;
 
 
 
 /**
- * @author Manal
+ * @author Manal, Evania
  *
  */
 public class CommandAddMemberTest {
 
 	/**
 	 * Tests the command for adding a new member
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public void testAddMember() {
+	public void testAddMember() throws DatabaseException {
 		String newMemberName = "NewMember";
 		
 		QualifiedObserver mockedObserver = EasyMock.createMock(QualifiedObserver.class);

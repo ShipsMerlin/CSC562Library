@@ -4,20 +4,22 @@ import datasource.DatabaseException;
 import datasource.MemberRowDataGatewayMock;
 
 /**
- * @author em1419
+ * @author Evania Mans
  *
  */
-public class CommandFindMember extends Command
+public class CommandDeleteMember extends Command
 {
+
 	/**
-	 * 
+	 * The Member's ID
 	 */
 	int memberId;
 	
 	/**
-	 * @param id
+	 * @param id - the ID of the member you want to delete
 	 */
-	public CommandFindMember(int id) {
+	public CommandDeleteMember(int id)
+	{
 		memberId = id;
 	}
 
@@ -26,23 +28,14 @@ public class CommandFindMember extends Command
 	{
 		MemberRowDataGatewayMock gateway = null;
 		
-		try
-		{
-			// use find constructor to get member information
-			gateway = new MemberRowDataGatewayMock(memberId);
-		} catch (DatabaseException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
+		gateway = new MemberRowDataGatewayMock(memberId);
 		
-		// get the member name
 		String memberName = gateway.getMemberName();
 		
-		// create response report
 		MemberResponseReport report = new MemberResponseReport(memberId, memberName);
 		
-		// send response report
+		gateway.deleteMember();
+		
 		QualifiedObservableConnector.getSingleton().sendReport(report);
 		
 		return true;

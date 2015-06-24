@@ -1,5 +1,6 @@
 package model;
 
+import datasource.DatabaseException;
 import model.InformationQueue;
 
 /**
@@ -94,6 +95,9 @@ public class ModelFacade
 							commandsPending = false;
 						}
 					} catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					} catch (DatabaseException e)
 					{
 						e.printStackTrace();
 					}

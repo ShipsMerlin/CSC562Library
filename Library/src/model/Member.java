@@ -49,16 +49,18 @@ public class Member
 
 	/**
 	 * @return the member's unique ID
+	 * @throws DatabaseException 
 	 */
-	public int getMemberID()
+	public int getMemberID() throws DatabaseException
 	{
 		return dataMapper.getMemberID();
 	}
 
 	/**
 	 * @return the member's name
+	 * @throws DatabaseException 
 	 */
-	public String getMemberName()
+	public String getMemberName() throws DatabaseException
 	{
 		return dataMapper.getMemberName();
 	}

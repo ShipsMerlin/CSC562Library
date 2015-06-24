@@ -1,5 +1,7 @@
 package datasource;
 
+import org.junit.Test;
+
 import datasource.DatabaseException;
 
 /**
@@ -27,6 +29,35 @@ public class MemberRowDataGatewayMockTest extends MemberRowDataGatewayTest
 	MemberRowDataGateway createGateway(String memberName)
 	{
 		return new MemberRowDataGatewayMock(memberName);
+	}
+	
+	/**
+	 * @throws DatabaseException
+	 */
+	@Test(expected=DatabaseException.class)
+	public void deleteMember() throws DatabaseException {
+		MemberRowDataGatewayMock mock = new MemberRowDataGatewayMock(MembersForTest.ANDY.getMemberID());
+		mock.deleteMember();
+		mock.getMemberID();		// should throw exception because the member no longer exists
+		mock.getMemberName();
+	}
+	
+	/**
+	 * @throws DatabaseException
+	 */
+	@Test(expected=DatabaseException.class)
+	public void getMemberID() throws DatabaseException {
+		MemberRowDataGatewayMock mock = new MemberRowDataGatewayMock();
+		mock.getMemberID();
+	}
+	
+	/**
+	 * @throws DatabaseException
+	 */
+	@Test(expected=DatabaseException.class)
+	public void getMemberName() throws DatabaseException {
+		MemberRowDataGatewayMock mock = new MemberRowDataGatewayMock();
+		mock.getMemberName();
 	}
 
 }

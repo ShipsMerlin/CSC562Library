@@ -14,8 +14,9 @@ public class MemberList
 	 * @param string 
 	 * @param memberName
 	 * @return MemberID
+	 * @throws DatabaseException 
 	 */
-	public int addMember(String memberName) {
+	public int addMember(String memberName) throws DatabaseException {
 		MemberRowDataGatewayMock memberRowDataGatewayMock = new MemberRowDataGatewayMock ( memberName);
 		return memberRowDataGatewayMock.getMemberID();
 	}

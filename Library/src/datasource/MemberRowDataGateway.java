@@ -12,13 +12,15 @@ public interface MemberRowDataGateway
 
 	/**
 	 * @return this member's member id
+	 * @throws DatabaseException 
 	 */
-	int getMemberID();
+	int getMemberID() throws DatabaseException;
 
 	/**
 	 * @return the member's name
+	 * @throws DatabaseException 
 	 */
-	String getMemberName();
+	String getMemberName() throws DatabaseException;
 
 	/**
 	 * @return the member's name
@@ -38,4 +40,5 @@ public interface MemberRowDataGateway
 	 */
 	void persist() throws DatabaseException;
 
+	public void deleteMember();
 }
