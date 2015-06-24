@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.CommandAddMember;
+import model.CommandDeleteMember;
 import model.CommandFindMember;
 import model.MemberResponseReport;
 import model.ModelFacade;
@@ -155,6 +156,16 @@ public class MemberGUI implements QualifiedObserver
 		txtDisplayMemberName.setName("DisplyMemberNameText");
 		JButton btnDeleteMember = new JButton("Delete");
 		btnDeleteMember.setName("btnDeleteMember");
+		btnDeleteMember.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandDeleteMember command = new CommandDeleteMember(Integer.parseInt(searchMemberIDText.getText()));
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
 		memberNameDisplayPanel.add(lblMemberName);
 		memberNameDisplayPanel.add(txtDisplayMemberName);
 		memberNameDisplayPanel.add(btnDeleteMember);
@@ -185,7 +196,6 @@ public class MemberGUI implements QualifiedObserver
 		{
 			MemberResponseReport mrr = (MemberResponseReport)report;
 			txtDisplayMemberName.setText(mrr.getMemberName());
-			//System.out.println(fmrr.getMemberName());
 		}
 	}
 	

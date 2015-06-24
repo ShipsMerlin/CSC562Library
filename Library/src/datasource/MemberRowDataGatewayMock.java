@@ -74,8 +74,9 @@ public class MemberRowDataGatewayMock implements MemberRowDataGateway
 		}
 		memberID = nextKey;
 		nextKey++;
-
-		memberInfo.put(memberID, new MemberInfo(memberName));
+		
+		info = new MemberInfo(memberName);
+		memberInfo.put(memberID, info);
 	}
 
 	/**
@@ -101,11 +102,15 @@ public class MemberRowDataGatewayMock implements MemberRowDataGateway
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @see datasource.MemberRowDataGateway#getMemberID()
 	 */
 	@Override
-	public int getMemberID()
+	public int getMemberID() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Member has already been deleted.");
+		}
 		return memberID;
 	}
 
@@ -119,11 +124,15 @@ public class MemberRowDataGatewayMock implements MemberRowDataGateway
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @see datasource.MemberRowDataGateway#getMemberName()
 	 */
 	@Override
-	public String getMemberName()
+	public String getMemberName() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Member has already been deleted.");
+		}
 		return info.memberName;
 	}
 
@@ -132,6 +141,13 @@ public class MemberRowDataGatewayMock implements MemberRowDataGateway
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteMember()
+	{
+		memberInfo.remove(memberID);
+		info = null;
 	}
 
 }

@@ -23,10 +23,11 @@ public class CommandAddMember extends Command
 	
 	/**
 	 * ML is member List gonne and new Member name
+	 * @throws DatabaseException 
 	 */
 
 	@Override
-	protected boolean execute()
+	protected boolean execute() throws DatabaseException
 	{
 		MemberRowDataGatewayMock gateway = null;
 		

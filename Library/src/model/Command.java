@@ -1,5 +1,6 @@
 package model;
 
+import datasource.DatabaseException;
 import model.InfoPacket;
 
 /**
@@ -13,8 +14,9 @@ public abstract class Command implements InfoPacket
 	 * perform the action associated with this command
 	 * 
 	 * @return true of the operation was successful
+	 * @throws DatabaseException 
 	 */
-	protected abstract boolean execute();
+	protected abstract boolean execute() throws DatabaseException;
 
 	/**
 	 * 
