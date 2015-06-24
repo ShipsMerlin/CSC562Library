@@ -5,8 +5,6 @@ import org.junit.Test;
 
 import datasource.BooksForTest;
 import datasource.DatabaseException;
-import datasource.MembersForTest;
-
 /**
  * @author bwiens
  *
@@ -22,9 +20,9 @@ public class CommandFindBookTest {
 		QualifiedObserver mockedObserver = EasyMock.createMock(QualifiedObserver.class);
 		QualifiedObservableConnector connector = QualifiedObservableConnector.getSingleton();
 		
-		connector.registerObserver(mockedObserver, FindBookResponseReport.class);
+		connector.registerObserver(mockedObserver, BookResponseReport.class);
 		
-		FindBookResponseReport mockReport = new FindBookResponseReport(BooksForTest.WELLINGTON.getBookID(), BooksForTest.WELLINGTON.getISBN(), BooksForTest.WELLINGTON.getTitle(), BooksForTest.WELLINGTON.getAuthor());
+		BookResponseReport mockReport = new BookResponseReport(BooksForTest.WELLINGTON.getBookID(), BooksForTest.WELLINGTON.getISBN(), BooksForTest.WELLINGTON.getTitle(), BooksForTest.WELLINGTON.getAuthor());
 		
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);

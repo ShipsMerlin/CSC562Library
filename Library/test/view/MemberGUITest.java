@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import org.junit.Test;
 
 /**
- * @author Evania Mans
+ * @author Evania Mans,Saad,Mohammed
  *
  */
 public class MemberGUITest

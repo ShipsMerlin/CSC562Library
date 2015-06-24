@@ -90,7 +90,9 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 		nextKey++;
 		this.isbn = isbn;
 
-		bookInfo.put(isbn, new BookInfo(bookID, title, author, memberID));
+		info = new BookInfo(bookID, title, author, memberID);
+		bookInfo.put(isbn, info);
+
 	}
 
 	/**
@@ -137,7 +139,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	}
 
 	/**
-	 * @see datasource.BookRowDataGateway#getTitle()
+	 * @sepersist();e datasource.BookRowDataGateway#getTitle()
 	 */
 	@Override
 	public String getTitle()

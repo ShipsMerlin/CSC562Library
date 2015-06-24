@@ -2,7 +2,6 @@ package model;
 
 import datasource.BookRowDataGatewayMock;
 import datasource.DatabaseException;
-import datasource.MemberRowDataGatewayMock;
 
 /**
  * @author bwiens
@@ -47,7 +46,7 @@ public class CommandFindBook extends Command{
 		String bookTitle = gateway.getTitle();
 		
 		// create response report
-		FindBookResponseReport report = new FindBookResponseReport(bookID, bookIsbn, bookTitle, bookAuthor);
+		BookResponseReport report = new BookResponseReport(bookID, bookIsbn, bookTitle, bookAuthor);
 		
 		// send response report
 		QualifiedObservableConnector.getSingleton().sendReport(report);
