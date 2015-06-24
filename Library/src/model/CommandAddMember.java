@@ -15,9 +15,9 @@ public class CommandAddMember extends Command
 	{
 		// TODO Auto-generated method stub
 		MemberList ML = new MemberList();
-		String memberName = "Manal";
+		String memberName = null;
 		ML.addMember(memberName);
 		return true;
 	}
-
+	
 }
