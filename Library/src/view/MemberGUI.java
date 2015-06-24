@@ -75,6 +75,7 @@ public class MemberGUI
 		 * Adding all components for Member Search
 		 */
 		JPanel memberPanel = new JPanel();
+		memberPanel.setName("memberPanel");
 		memberPanel.setLayout(new GridLayout(1, 3));
 		JLabel memberLabel = new JLabel("Member Name");
 		memberLabel.setName("MemberName");
@@ -104,8 +105,10 @@ public class MemberGUI
 		 */
 		
 		JPanel MemberPanel = new JPanel();
+		MemberPanel.setName("MemberPanel");
 		MemberPanel.setLayout(new GridLayout(1, 3));
 		JLabel MemberIDLabel = new JLabel("Member Id");
+		MemberIDLabel.setName("MemberId");
 		JTextField MemberIDText = new JTextField("");
 		MemberIDText.setName("MemberID");
 		JButton memberIDButton = new JButton("Search");
@@ -120,24 +123,26 @@ public class MemberGUI
 		content1.setName("MemberPanel1");
 		
 		JPanel MemberPanel1 = new JPanel();
+		MemberPanel1.setName("MemberPanel1");
 		MemberPanel1.setLayout(new GridLayout(1, 3));
 		JLabel MemberNameLabel1 = new JLabel("Disply Member Name");
+		MemberNameLabel1.setName("DisplyMemberN");
 		JTextField MemberNameText1 = new JTextField("");
 		MemberNameText1.setName("DisplyMemberName");
 		JButton memberNameButton1 = new JButton("Delete");
 		memberNameButton1.setName("btnMemberName");
-		
 		MemberPanel1.add(MemberNameLabel1);
 		MemberPanel1.add(MemberNameText1);
 		MemberPanel1.add(memberNameButton1);
 		MemberPanel.add(MemberPanel1);
 		
 		JPanel BookPanel = new JPanel();
+		BookPanel.setName("BookPanel");
 		BookPanel.setLayout(new GridLayout(1, 2));
 		JLabel BookLabel = new JLabel("Disply Book ");
+		BookLabel.setName("DisplyBook");
 		JTextField BookText = new JTextField("");
 		BookText.setName("DisplyBook");
-		
 		BookPanel.add(BookLabel);
 		BookPanel.add(BookText);
 		content1.add(MemberPanel1);
