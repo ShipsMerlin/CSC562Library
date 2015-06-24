@@ -1,4 +1,6 @@
+import model.CommandAddBookTest;
 import model.CommandAddMemberTest;
+import model.CommandDeleteMemberTest;
 import model.CommandFindBookTest;
 import model.CommandFindMemberTest;
 import model.MemberDataMapperTest;
@@ -42,7 +44,9 @@ import datasource.MemberRowDataGatewayMockTest;
 		// MembersForTest.class,
 
 		// model
+		CommandAddBookTest.class,
 		CommandAddMemberTest.class,
+		CommandDeleteMemberTest.class,
 		CommandFindBookTest.class,
 		CommandFindMemberTest.class,
 		MemberDataMapperTest.class, 
