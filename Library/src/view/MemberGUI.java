@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,7 +70,7 @@ public class MemberGUI implements QualifiedObserver
 	}
 
 	/**
-	 * @return
+	 * @return - the newly created JPanel
 	 * 
 	 */
 	JPanel createAndShowGUI()
@@ -84,7 +82,7 @@ public class MemberGUI implements QualifiedObserver
 		// main panel set up
 		JPanel content = new JPanel();
 		content.setLayout(new GridLayout(5, 1));
-		content.setName("MemberPanel");
+		content.setName("memberPanel");
 
 		/**
 		 * Adding all components for Member Add
@@ -165,10 +163,10 @@ public class MemberGUI implements QualifiedObserver
 		JPanel BookPanel = new JPanel();
 		BookPanel.setName("BookPanel");
 		BookPanel.setLayout(new GridLayout(1, 2));
-		JLabel BookLabel = new JLabel("Disply Book ");
-		BookLabel.setName("Displybook");
+		JLabel BookLabel = new JLabel("Display Book ");
+		BookLabel.setName("DisplaybookLabel");
 		JTextField BookText = new JTextField("");
-		BookText.setName("DisplyBook");
+		BookText.setName("DisplayBookText");
 		BookPanel.add(BookLabel);
 		BookPanel.add(BookText);
 		displayMemberInfoPanel.add(memberNameDisplayPanel);
