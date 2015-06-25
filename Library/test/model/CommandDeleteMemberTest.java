@@ -1,6 +1,7 @@
 package model;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
 
 import datasource.DatabaseException;
@@ -12,7 +13,13 @@ import datasource.MembersForTest;
  */
 public class CommandDeleteMemberTest
 {
-
+	/**
+	 * Resets the singleton
+	 */
+	@Before
+	public void reset() {
+		QualifiedObservableConnector.resetSingleton();
+	}
 	/**
 	 * @throws DatabaseException
 	 */
