@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import org.junit.Test;
 
 import datasource.BooksForTest;
-import datasource.MembersForTest;
 
 /**
  * @author Benjamin Wiens
@@ -51,12 +50,15 @@ public class BookGUITest
 		assertEquals(Runner.BOOK_CARD, gui.bookCard.getName());
 	
 		// Try adding 'New Books' to the list of Books
-		//gui.addMemberNameTextField.setText("New Member");
-		//addMemberButton.doClick();	// click AddMember Button
-		//pause();
+		gui.titleBox.setText("New Member");
+		gui.authorBox.setText("New Author");
+		gui.isbnBox.setText("111");
+		gui.buttonAddBook.doClick();	// click AddBook Button
+
+		pause();
 		
-		// Does the Display Member Name textbox show 'New Member'?
-		//assertEquals("New Member", gui.txtDisplayMemberName.getText());
+		//Does the Display Member Name textbox show 'New Book'?
+		assertEquals("New Author", gui.bottomAuthorTextField.getText());
 		
 		// Try searching for a book that already exists
 		gui.BookISBNBox.setText((BooksForTest.WELLINGTON.getISBN()));

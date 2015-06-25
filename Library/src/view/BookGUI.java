@@ -4,16 +4,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.BookResponseReport;
+import model.CommandAddBook;
 import model.CommandFindBook;
-import model.CommandFindMember;
-import model.MemberResponseReport;
 import model.ModelFacade;
 import model.QualifiedObservableConnector;
 import model.QualifiedObservableReport;
@@ -41,7 +39,23 @@ public class BookGUI implements QualifiedObserver
 	/**
 	 * 
 	 */
-	JTextField bottomBooksTextField;
+	JTextField titleBox;
+	/**
+	 * 
+	 */
+	JTextField bottomAuthorTextField;
+	/**
+	 * 
+	 */
+	JButton buttonAddBook;
+	/**
+	 * 
+	 */
+	JTextField authorBox;
+	/**
+	 * 
+	 */
+	JTextField isbnBox;
 	/**
 	 * 
 	 */
@@ -73,23 +87,23 @@ public class BookGUI implements QualifiedObserver
 		bookCard.setName("bookPanel");
 		JPanel topPanel = new JPanel(new GridLayout(1,2));
 		JPanel AddFieldPanel = new JPanel(new GridLayout(4,2));
-		JLabel addBookLabel = new JLabel("AddBookLabel");
+		JLabel addBookLabel = new JLabel("Add Books");
 		addBookLabel.setName("AddBookLabel");
 		JLabel spaceLabel = new JLabel("");
 		
 		JLabel title = new JLabel("Title");
 		title.setName("titelField");
-		JTextField titleBox =new JTextField(20);
+		titleBox =new JTextField(20);
 	    titleBox.setName("TitleBox");
 	    
-		JLabel authorlabel = new JLabel("AuthorLabel");
-		authorlabel.setName("AuthorLabel");
-		JTextField authorBox =new JTextField(20);
-		  authorBox.setName("authorBox");
+		JLabel authorlabel = new JLabel("Author");
+		authorlabel.setName("Author");
+		authorBox =new JTextField(20);
+		 authorBox.setName("authorBox");
 		  
 		JLabel isbn = new JLabel("ISBN");
 		isbn.setName("isbnField");
-		JTextField isbnBox =new JTextField(20);
+		isbnBox =new JTextField(20);
 		isbnBox.setName("isbnBox");
 		
 		AddFieldPanel.add(addBookLabel);
@@ -102,9 +116,21 @@ public class BookGUI implements QualifiedObserver
 		AddFieldPanel.add(isbnBox);
 		topPanel.add(AddFieldPanel);
 		JPanel AddButtonPanel = new JPanel(new GridLayout(1,1));
-		JButton buttonAddMember = new JButton("Add");
-		buttonAddMember.setName("AddBookButton");
-		AddButtonPanel.add(buttonAddMember);
+		buttonAddBook = new JButton("Add");
+		buttonAddBook.setName("AddBookButton");
+		
+		buttonAddBook.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandAddBook command = new CommandAddBook(isbnBox.getText(), titleBox.getText(), authorBox.getText(), 0);
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
+
+		
+		AddButtonPanel.add(buttonAddBook);
 		topPanel.add(AddButtonPanel);
 		bookCard.add(topPanel);
 		
@@ -114,7 +140,7 @@ public class BookGUI implements QualifiedObserver
 		JLabel BookISBNLabel = new JLabel("Book ISBN:");
 		BookISBNLabel .setName("BookISBN");
 		BookISBNBox = new JTextField();
-		BookISBNBox.setName("BookISBNTextField Box");
+		BookISBNBox.setName("BookISBNTextFieldBox");
 		JButton buttonSearchBooks = new JButton("Search");
 		buttonSearchBooks.setName("SearchBookButton");
 		buttonSearchBooks.addActionListener(new ActionListener()
@@ -140,12 +166,12 @@ public class BookGUI implements QualifiedObserver
 		bottomTitleTextField = new JTextField(20);
 		JLabel bottomAuthorLabel = new JLabel("Author:");
 		bottomAuthorLabel.setName("AuthorLabel");
-		bottomBooksTextField = new JTextField(20);
-		bottomBooksTextField.setName("bookNameofDeletefield");
+		bottomAuthorTextField = new JTextField(20);
+		bottomAuthorTextField.setName("bookNameofDeletefield");
 		bottomInnerPanel.add(bottomTitleLabel);
 		bottomInnerPanel.add(bottomTitleTextField);
 		bottomInnerPanel.add(bottomAuthorLabel);
-		bottomInnerPanel.add(bottomBooksTextField);
+		bottomInnerPanel.add(bottomAuthorTextField);
 		bottomPanel.add(bottomInnerPanel);
 		
 		JPanel bottomRightPanel = new JPanel(new GridLayout(1,1));
@@ -181,7 +207,7 @@ public class BookGUI implements QualifiedObserver
 		{
 			BookResponseReport mrr = (BookResponseReport)report;
 			bottomTitleTextField.setText(mrr.getBookTitle());
-			bottomBooksTextField.setText(mrr.getBookAuthor());
+			bottomAuthorTextField.setText(mrr.getBookAuthor());
 			//System.out.println(fmrr.getMemberName());
 		}
 	}
