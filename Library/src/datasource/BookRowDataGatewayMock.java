@@ -121,38 +121,54 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @see datasource.BookRowDataGateway#getBookID()
 	 */
 	@Override
-	public int getBookID()
+	public int getBookID() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Book has already been deleted.");
+		}
 		return info.bookId;
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @see datasource.BookRowDataGateway#getISBN()
 	 */
 	@Override
-	public String getISBN()
+	public String getISBN() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Book has already been deleted.");
+		}
 		return isbn;
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @sepersist();e datasource.BookRowDataGateway#getTitle()
 	 */
 	@Override
-	public String getTitle()
+	public String getTitle() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Book has already been deleted.");
+		}
 		return info.title;
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * @see datasource.BookRowDataGateway#getAuthor()
 	 */
 	@Override
-	public String getAuthor()
+	public String getAuthor() throws DatabaseException
 	{
+		if (info == null) {
+			throw new DatabaseException("Book has already been deleted.");
+		}
 		return info.author;
 	}
 
@@ -191,7 +207,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	 */
 	public void deleteBook()
 	{
-		bookInfo.remove(info);
+		bookInfo.remove(isbn);
 		info = null;
 	}
 

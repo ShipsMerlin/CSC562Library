@@ -41,8 +41,9 @@ public class Member
 
 	/**
 	 * @return the list of books the member currently has checked out
+	 * @throws DatabaseException 
 	 */
-	public ArrayList<String> getBooksCheckedOut()
+	public ArrayList<String> getBooksCheckedOut() throws DatabaseException
 	{
 		return dataMapper.getISBNs();
 	}

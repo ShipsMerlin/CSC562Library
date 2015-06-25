@@ -1,6 +1,7 @@
 package model;
 
 import datasource.BookRowDataGatewayMock;
+import datasource.DatabaseException;
 
 /**
  * @author ma7488
@@ -40,7 +41,7 @@ public class CommandAddBook extends Command
 	}
 	
 	@Override
-	protected boolean execute()
+	protected boolean execute() throws DatabaseException
 	{
 
 		BookRowDataGatewayMock gateway = null;

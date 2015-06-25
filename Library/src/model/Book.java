@@ -26,24 +26,27 @@ public class Book
 
 	/**
 	 * @return the book's ISBN
+	 * @throws DatabaseException 
 	 */
-	public String getISBN()
+	public String getISBN() throws DatabaseException
 	{
 		return gatewayMock.getISBN();
 	}
 
 	/**
 	 * @return the book's title
+	 * @throws DatabaseException 
 	 */
-	public String getTitle()
+	public String getTitle() throws DatabaseException
 	{
 		return gatewayMock.getTitle();
 	}
 
 	/**
 	 * @return the book's author
+	 * @throws DatabaseException 
 	 */
-	public String getAuthor()
+	public String getAuthor() throws DatabaseException
 	{
 		return gatewayMock.getAuthor();
 	}

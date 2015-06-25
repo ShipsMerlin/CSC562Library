@@ -25,23 +25,27 @@ public interface BookRowDataGateway
 
 	/**
 	 * @return the book's unique db id
+	 * @throws DatabaseException 
 	 */
-	int getBookID();
+	int getBookID() throws DatabaseException;
 
 	/**
 	 * @return the book's title
+	 * @throws DatabaseException 
 	 */
-	String getTitle();
+	String getTitle() throws DatabaseException;
 
 	/**
 	 * @return the book's ISBN
+	 * @throws DatabaseException 
 	 */
-	String getISBN();
+	String getISBN() throws DatabaseException;
 
 	/**
 	 * @return the book's author
+	 * @throws DatabaseException 
 	 */
-	String getAuthor();
+	String getAuthor() throws DatabaseException;
 
 	/**
 	 * @param memberID

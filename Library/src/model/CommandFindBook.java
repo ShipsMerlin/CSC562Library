@@ -22,10 +22,11 @@ public class CommandFindBook extends Command{
 	}
 
 	/**
+	 * @throws DatabaseException 
 	 * 
 	 */
 	@Override
-	protected boolean execute()
+	protected boolean execute() throws DatabaseException
 	{
 		BookRowDataGatewayMock gateway = null;
 		

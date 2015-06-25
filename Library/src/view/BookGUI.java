@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import model.BookResponseReport;
 import model.CommandAddBook;
+import model.CommandDeleteBook;
 import model.CommandFindBook;
 import model.ModelFacade;
 import model.QualifiedObservableConnector;
@@ -177,6 +178,16 @@ public class BookGUI implements QualifiedObserver
 		JPanel bottomRightPanel = new JPanel(new GridLayout(1,1));
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.setName("DeleteBookButton");
+		
+		deleteButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CommandDeleteBook command = new CommandDeleteBook(BookISBNBox.getText());
+				ModelFacade.getSingleton().queueCommand(command);
+			}
+		});
 		bottomRightPanel.add(deleteButton);
 		bottomPanel.add(bottomRightPanel);
 		bookCard.add(bottomPanel);

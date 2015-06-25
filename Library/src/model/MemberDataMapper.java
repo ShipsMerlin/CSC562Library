@@ -61,8 +61,9 @@ public class MemberDataMapper
 
 	/**
 	 * @return a list of the ISBNs of books this member has checked out
+	 * @throws DatabaseException 
 	 */
-	public ArrayList<String> getISBNs()
+	public ArrayList<String> getISBNs() throws DatabaseException
 	{
 		ArrayList<String> isbns = new ArrayList<String>();
 		for (BookRowDataGateway gateway : bookRowDataGateways)

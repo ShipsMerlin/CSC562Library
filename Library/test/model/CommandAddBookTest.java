@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import datasource.BooksForTest;
+import datasource.DatabaseException;
 
 /**
  * @author
@@ -33,10 +34,11 @@ public class CommandAddBookTest
 	String NewAuthor = "Saad";
 
 	/**
+	 * @throws DatabaseException 
 	 * 
 	 */
 	@Test
-	public void test()
+	public void test() throws DatabaseException
 	{
 		QualifiedObserver mockedObserver = EasyMock
 				.createMock(QualifiedObserver.class);
