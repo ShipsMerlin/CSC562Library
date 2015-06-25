@@ -4,10 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import datasource.BookRowDataGatewayMock;
+import datasource.BookTableDataGatewayMock;
 import datasource.BooksForTest;
 import datasource.DatabaseException;
+import datasource.MemberRowDataGatewayMock;
 import datasource.MembersForTest;
 
 /**
@@ -18,6 +22,14 @@ import datasource.MembersForTest;
  */
 public class MemberDataMapperTest
 {
+	
+	@Before
+	public void setUp()
+	{
+		new MemberRowDataGatewayMock().resetData();
+		BookTableDataGatewayMock.getSingleton().resetData();
+		new BookRowDataGatewayMock().resetData();
+	}
 
 	/**
 	 * @throws DatabaseException
