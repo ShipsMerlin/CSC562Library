@@ -39,18 +39,17 @@ protected boolean execute() throws DatabaseException
 {
 
 //	BookRowDataGatewayMock gateway = null;
-	Member member =null;
 	Book book= new Book(ISBN);
 
 	// use find constructor to get member information
 //	gateway = new BookRowDataGatewayMock(book.getISBN());
 	
 	// get the member name
-	MemberRowDataGatewayMock gateway = new MemberRowDataGatewayMock(memberId);
-	String memberName = gateway.getMemberName();
+	Member member = new Member(memberId);
+	member.checkOutBook(book);
 	
 	// create response report
-	CheckoutBookResponseReport report = new CheckoutBookResponseReport(book, memberName);
+	CheckoutBookResponseReport report = new CheckoutBookResponseReport(book, member.getMemberName());
 	
 	// send response report
 	QualifiedObservableConnector.getSingleton().sendReport(report);

@@ -58,4 +58,9 @@ public interface BookRowDataGateway
 	 */
 	public int getMemberID();
 
+	/**
+	 * Delete the book that this object is managing
+	 */
+	public void deleteBook();
+
 }

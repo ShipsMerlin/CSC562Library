@@ -65,10 +65,9 @@ public class Book
 
 
 	/**
-	 * @return
+	 * @return the book's unique db id
 	 * @throws DatabaseException
 	 */
-	@SuppressWarnings("javadoc")
 	public int getBookId() throws DatabaseException
 	{
 		return gatewayMock.getBookID();
