@@ -6,8 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.QualifiedObservableConnector;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import datasource.MemberRowDataGatewayMock;
 import datasource.MembersForTest;
 
 /**
@@ -16,7 +20,14 @@ import datasource.MembersForTest;
  */
 public class CheckoutBookGUITest
 {
-
+	/**
+	 * Resets the singleton
+	 */
+	@Before
+	public void reset() {
+		QualifiedObservableConnector.resetSingleton();
+		new MemberRowDataGatewayMock().resetData();
+	}
 	/**
 	 * Tests the UI of the CheckoutBookGUI
 	 */
