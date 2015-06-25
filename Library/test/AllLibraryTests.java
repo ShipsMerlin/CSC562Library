@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import view.BookGUITest;
+import view.CheckoutBookGUITest;
 import view.MemberGUITest;
 import view.RunnerTestMocked;
 import datasource.BookRowDataGatewayMockTest;
@@ -47,11 +48,11 @@ import datasource.MemberRowDataGatewayMockTest;
 		// model
 		CommandAddBookTest.class,
 		CommandAddMemberTest.class,
-		CommandDeleteMemberTest.class,
+		CommandCheckoutBookTest.class,
 		CommandDeleteBookTest.class,
+		CommandDeleteMemberTest.class,
 		CommandFindBookTest.class,
 		CommandFindMemberTest.class,
-		CommandCheckoutBookTest.class,
 		MemberDataMapperTest.class, 
 		MemberListTest.class,
 		MemberTest.class,
@@ -59,7 +60,7 @@ import datasource.MemberRowDataGatewayMockTest;
 
 		// View
 		BookGUITest.class,
-		CommandCheckoutBookTest.class,
+		CheckoutBookGUITest.class,
 		// ComponentMap.class
 		MemberGUITest.class,
 		RunnerTestMocked.class, 
