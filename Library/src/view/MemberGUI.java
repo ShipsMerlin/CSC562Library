@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.CommandAddMember;
@@ -51,6 +52,10 @@ public class MemberGUI implements QualifiedObserver
 	 * 
 	 */
 	JTextField txtDisplayMemberName;
+	/**
+	 * 
+	 */
+	JTextArea booksCheckedOutText;
 	/**
 	 * 
 	 */
@@ -176,10 +181,10 @@ public class MemberGUI implements QualifiedObserver
 		BookPanel.setLayout(new GridLayout(1, 2));
 		JLabel BookLabel = new JLabel("Display Book ");
 		BookLabel.setName("DisplaybookLabel");
-		JTextField BookText = new JTextField("");
-		BookText.setName("DisplayBookText");
+		booksCheckedOutText = new JTextArea(5, 25);
+		booksCheckedOutText.setName("DisplayBookText");
 		BookPanel.add(BookLabel);
-		BookPanel.add(BookText);
+		BookPanel.add(booksCheckedOutText);
 		displayMemberInfoPanel.add(memberNameDisplayPanel);
 		displayMemberInfoPanel.add(BookPanel);
 
@@ -196,6 +201,10 @@ public class MemberGUI implements QualifiedObserver
 		{
 			MemberResponseReport mrr = (MemberResponseReport)report;
 			txtDisplayMemberName.setText(mrr.getMemberName());
+			for (String book : mrr.getCheckedoutBooks())
+			{
+				booksCheckedOutText.append(book + "\n");
+			}
 		}
 	}
 	

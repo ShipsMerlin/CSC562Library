@@ -83,6 +83,7 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 		JPanel memberSearchPanel = new JPanel();
 		memberSearchPanel.setLayout(new GridLayout(2,3));
 		JLabel memberLabel = new JLabel("Member");
+		memberLabel.setName("lblMember");
 		memberSearchTextField = new JTextField(5);
 		memberSearchTextField.setName("txtMemberSearch");
 		memberSearchButton = new JButton("Search");
@@ -117,6 +118,7 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 		JPanel bookSearchPanel = new JPanel();
 		bookSearchPanel.setLayout(new GridLayout(2,3));
 		JLabel bookLabel = new JLabel("Book");
+		bookLabel.setName("lblBook");
 		bookSearchTextField = new JTextField(5);
 		bookSearchTextField.setName("txtBookSearch");
 		JButton bookSearchButton = new JButton("Search");

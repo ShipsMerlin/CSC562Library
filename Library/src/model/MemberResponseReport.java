@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Report that provides the member ID, name, and books checked out
  * when searching for, adding, or deleting a member.
@@ -18,12 +20,18 @@ public class MemberResponseReport implements QualifiedObservableReport
 	String memberName;
 	
 	/**
+	 * List of ISBNs
+	 */
+	ArrayList<String> isbns;
+	
+	/**
 	 * @param id - the member's ID
 	 * @param name - the member's name
 	 */
-	public MemberResponseReport(int id, String name) {
+	public MemberResponseReport(int id, String name, ArrayList<String> isbns) {
 		memberId = id;
 		memberName = name;
+		this.isbns = isbns;
 	}
 	
 	/**
@@ -38,6 +46,13 @@ public class MemberResponseReport implements QualifiedObservableReport
 	 */
 	public String getMemberName() {
 		return memberName;
+	}
+	
+	/**
+	 * @return - list of ISBNs of books checked out by member
+	 */
+	public ArrayList<String> getCheckedoutBooks() {
+		return isbns;
 	}
 
 	@Override

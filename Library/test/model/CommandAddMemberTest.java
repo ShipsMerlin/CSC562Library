@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +40,7 @@ public class CommandAddMemberTest
 		connector.registerObserver(mockedObserver, MemberResponseReport.class);
 
 		MemberResponseReport mockReport = new MemberResponseReport(
-				MembersForTest.values().length + 1, newMemberName);
+				MembersForTest.values().length + 1, newMemberName, new ArrayList<String>());
 
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);

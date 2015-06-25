@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+
+import datasource.BookTableDataGatewayMock;
 import datasource.DatabaseException;
 import datasource.MemberRowDataGatewayMock;
 
@@ -38,9 +41,10 @@ public class CommandFindMember extends Command
 		
 		// get the member name
 		String memberName = gateway.getMemberName();
+		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton().getBooksForMember(memberId);
 		
 		// create response report
-		MemberResponseReport report = new MemberResponseReport(memberId, memberName);
+		MemberResponseReport report = new MemberResponseReport(memberId, memberName, isbns);
 		
 		// send response report
 		QualifiedObservableConnector.getSingleton().sendReport(report);

@@ -7,6 +7,7 @@ import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.QualifiedObservableConnector;
@@ -92,7 +93,7 @@ public class MemberGUITest
 		JLabel BookLabel = (JLabel) componentMap.getComponentByName("DisplaybookLabel");
 		assertNotNull(BookLabel);
 		
-		JTextField BookText = (JTextField) componentMap.getComponentByName("DisplayBookText");
+		JTextArea BookText = (JTextArea) componentMap.getComponentByName("DisplayBookText");
 		assertNotNull(BookText);
 				
 				

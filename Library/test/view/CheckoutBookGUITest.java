@@ -43,31 +43,31 @@ public class CheckoutBookGUITest
 		 * Tests that components pertaining to member searching are on the
 		 * screen
 		 */
-		JLabel label1 = (JLabel) componentMap.getComponentByName("lblMember");
-		assertNotNull(label1);
+		JLabel memberLabel = (JLabel) componentMap.getComponentByName("lblMember");
+		assertNotNull(memberLabel);
 
-		JTextField textField1 = (JTextField) componentMap
+		JTextField memberTextField = (JTextField) componentMap
 				.getComponentByName("txtMemberSearch");
-		assertNotNull(textField1);
+		assertNotNull(memberTextField);
 
-		JButton button1 = (JButton) componentMap
+		JButton memberSearchButton = (JButton) componentMap
 				.getComponentByName("btnSearchMember");
-		assertNotNull(button1);
+		assertNotNull(memberSearchButton);
 
 		/**
 		 * Tests that components pertaining to member searching are on the
 		 * screen
 		 */
-		JLabel label2 = (JLabel) componentMap.getComponentByName("lblBook");
-		assertNotNull(label2);
+		JLabel bookLabel = (JLabel) componentMap.getComponentByName("lblBook");
+		assertNotNull(bookLabel);
 
-		JTextField textField2 = (JTextField) componentMap
+		JTextField bookTextField = (JTextField) componentMap
 				.getComponentByName("txtBookSearch");
-		assertNotNull(textField2);
+		assertNotNull(bookTextField);
 
-		JButton button2 = (JButton) componentMap
+		JButton bookSearchButton = (JButton) componentMap
 				.getComponentByName("btnSearchBook");
-		assertNotNull(button2);
+		assertNotNull(bookSearchButton);
 
 		/**
 		 * Tests that the Checkout button is on the screen

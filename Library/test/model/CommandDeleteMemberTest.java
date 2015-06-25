@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +32,7 @@ public class CommandDeleteMemberTest
 		
 		connector.registerObserver(mockedObserver, MemberResponseReport.class);
 		
-		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.ANDY.getMemberID(), MembersForTest.ANDY.getMemberName());
+		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.ANDY.getMemberID(), MembersForTest.ANDY.getMemberName(), new ArrayList<String>());
 		
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);

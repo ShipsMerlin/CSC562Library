@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import datasource.DatabaseException;
 import datasource.MemberRowDataGatewayMock;
 
@@ -32,7 +34,7 @@ public class CommandDeleteMember extends Command
 		
 		String memberName = gateway.getMemberName();
 		
-		MemberResponseReport report = new MemberResponseReport(memberId, memberName);
+		MemberResponseReport report = new MemberResponseReport(memberId, memberName, new ArrayList<String>());
 		
 		gateway.deleteMember();
 		

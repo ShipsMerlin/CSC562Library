@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import datasource.DatabaseException;
 import datasource.MemberRowDataGatewayMock;
 
@@ -35,7 +37,7 @@ public class CommandAddMember extends Command
 		
 		int memberId = gateway.getMemberID();
 		
-		MemberResponseReport report = new MemberResponseReport(memberId, memberName);
+		MemberResponseReport report = new MemberResponseReport(memberId, memberName, new ArrayList<String>());
 		
 		QualifiedObservableConnector.getSingleton().sendReport(report);
 		

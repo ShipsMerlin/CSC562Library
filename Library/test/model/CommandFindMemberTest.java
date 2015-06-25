@@ -1,9 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import datasource.BookTableDataGatewayMock;
 import datasource.DatabaseException;
 import datasource.MembersForTest;
 
@@ -36,8 +39,9 @@ public class CommandFindMemberTest
 		QualifiedObservableConnector connector = QualifiedObservableConnector.getSingleton();
 		
 		connector.registerObserver(mockedObserver, MemberResponseReport.class);
+		ArrayList<String> isbns = BookTableDataGatewayMock.getSingleton().getBooksForMember(MembersForTest.MERLIN.getMemberID());
 		
-		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.MERLIN.getMemberID(), MembersForTest.MERLIN.getMemberName());
+		MemberResponseReport mockReport = new MemberResponseReport(MembersForTest.MERLIN.getMemberID(), MembersForTest.MERLIN.getMemberName(), isbns);
 		
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);
