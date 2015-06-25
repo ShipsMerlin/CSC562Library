@@ -1,5 +1,6 @@
 import model.CommandAddBookTest;
 import model.CommandAddMemberTest;
+import model.CommandDeleteBookTest;
 import model.CommandDeleteMemberTest;
 import model.CommandFindBookTest;
 import model.CommandFindMemberTest;
@@ -47,6 +48,7 @@ import datasource.MemberRowDataGatewayMockTest;
 		CommandAddBookTest.class,
 		CommandAddMemberTest.class,
 		CommandDeleteMemberTest.class,
+		CommandDeleteBookTest.class,
 		CommandFindBookTest.class,
 		CommandFindMemberTest.class,
 		MemberDataMapperTest.class, 

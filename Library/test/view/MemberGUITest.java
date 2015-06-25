@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.QualifiedObservableConnector;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import datasource.MembersForTest;
@@ -19,7 +22,14 @@ import datasource.MembersForTest;
  */
 public class MemberGUITest
 {
-
+	/**
+	 * Resets the singleton
+	 */
+	@Before
+	public void reset() {
+		QualifiedObservableConnector.resetSingleton();
+	}
+	
 	/**
 	 * Tests the MemberGUI
 	 * Makes sure the components are on the screen and tests the buttons.

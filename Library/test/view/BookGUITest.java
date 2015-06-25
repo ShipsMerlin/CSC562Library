@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.QualifiedObservableConnector;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import datasource.BooksForTest;
@@ -19,6 +22,14 @@ import datasource.BooksForTest;
  */
 public class BookGUITest
 {
+	/**
+	 * Resets the singleton
+	 */
+	@Before
+	public void reset() {
+		QualifiedObservableConnector.resetSingleton();
+	}
+	
 	/**
 	 * 
 	 */
