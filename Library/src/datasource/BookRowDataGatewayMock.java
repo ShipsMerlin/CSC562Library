@@ -185,5 +185,14 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	{
 		return info.memberID;
 	}
+	
+	/**
+	 * 
+	 */
+	public void deleteBook()
+	{
+		bookInfo.remove(info);
+		info = null;
+	}
 
 }
