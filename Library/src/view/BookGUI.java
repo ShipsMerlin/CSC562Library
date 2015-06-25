@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import datasource.DatabaseException;
 import model.BookResponseReport;
 import model.CommandAddBook;
 import model.CommandDeleteBook;
@@ -210,7 +211,7 @@ public class BookGUI implements QualifiedObserver
 	}
 
 	@Override
-	public void receiveReport(QualifiedObservableReport report)
+	public void receiveReport(QualifiedObservableReport report) throws DatabaseException
 	{
 		// TODO Auto-generated method stub
 		System.out.println("Received report");

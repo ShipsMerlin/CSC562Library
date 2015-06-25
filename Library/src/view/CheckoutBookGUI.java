@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import datasource.DatabaseException;
 import model.BookResponseReport;
+import model.CheckoutBookResponseReport;
+import model.CommandCheckoutBook;
 import model.CommandFindBook;
 import model.CommandFindMember;
 import model.MemberResponseReport;
@@ -58,6 +61,8 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	public CheckoutBookGUI() {
 		QualifiedObservableConnector.getSingleton().registerObserver(this, MemberResponseReport.class);
 		QualifiedObservableConnector.getSingleton().registerObserver(this, BookResponseReport.class);
+		QualifiedObservableConnector.getSingleton().registerObserver(this, CheckoutBookResponseReport.class);
+	
 	}
 	
 	
@@ -166,6 +171,8 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				CommandCheckoutBook command = new CommandCheckoutBook(bookSearchTextField.getText(), Integer.parseInt(memberSearchTextField.getText()));
+				ModelFacade.getSingleton().queueCommand(command);
 				// TODO Auto-generated method stub
 
 			}
@@ -208,7 +215,7 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	}
 
 	@Override
-	public void receiveReport(QualifiedObservableReport report)
+	public void receiveReport(QualifiedObservableReport report) throws DatabaseException
 	{
 		System.out.println("Received report");
 		if (report.getClass().equals(MemberResponseReport.class))
@@ -223,6 +230,12 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 			bookSearchResult.setText(fmrr.getBookTitle());
 			//System.out.println(fmrr.getMemberName());
 		}
+		else if (report.getClass().equals(BookResponseReport.class))
+		{
+			CheckoutBookResponseReport fmrr = (CheckoutBookResponseReport)report;
+			bookSearchResult.setText(fmrr.getBookName());
+		}//System.out.println(fmrr.getMemberName());
+		
 		
 		
 	}

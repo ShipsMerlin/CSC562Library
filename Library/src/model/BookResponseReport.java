@@ -1,35 +1,14 @@
 package model;
 
+import datasource.DatabaseException;
+
 /**
  * @author bwiens
  *
  */
 public class BookResponseReport implements QualifiedObservableReport {
 	
-	 /**
-	 * Book ID
-	 */
-	int bookId;
-
-	 /**
-	 * Book ISBN
-	 */
-	String bookIsbn;
-
-	 /**
-	 * Book Title
-	 */
-	String bookTitle;
-
-	 /**
-	 * Book Author
-	 */
-	String bookAuthor;
-	 
-	 /**
-	 * 
-	 */
-	int memberID;
+	 Book book;
 	
 	/**
 	 * @param id
@@ -37,53 +16,47 @@ public class BookResponseReport implements QualifiedObservableReport {
 	 * @param title
 	 * @param author
 	 */
-	public BookResponseReport(int id, String isbn, String title, String author) {
-		bookId = id;
-		bookIsbn = isbn;
-		bookTitle = title;
-		bookAuthor = author;		
+	public BookResponseReport(Book book) {
+		this.book = book;		
 	}
 	
 	/**
 	 * @return - ID associated with the book
+	 * @throws DatabaseException 
 	 */
-	public int getBookId() {
-		return bookId;
+	public int getBookId() throws DatabaseException {
+		return book.getBookId();
 	}
 	
 	/**
 	 * @return - ISBN associated with the book
+	 * @throws DatabaseException 
 	 */
-	public String getBookIsbn() {
-		return bookIsbn;
+	public String getBookIsbn() throws DatabaseException {
+		return book.getISBN();
 	}
 	
 	/**
 	 * @return - Title associated with the book
+	 * @throws DatabaseException 
 	 */
-	public String getBookTitle() {
-		return bookTitle;
+	public String getBookTitle() throws DatabaseException {
+		return book.getTitle();
 	}
 	
 	/**
 	 * @return - Author associated with the book
+	 * @throws DatabaseException 
 	 */
-	public String getBookAuthor() {
-		return bookAuthor;
+	public String getBookAuthor() throws DatabaseException {
+		return book.getAuthor();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((bookAuthor == null) ? 0 : bookAuthor.hashCode());
-		result = prime * result + bookId;
-		result = prime * result
-				+ ((bookIsbn == null) ? 0 : bookIsbn.hashCode());
-		result = prime * result
-				+ ((bookTitle == null) ? 0 : bookTitle.hashCode());
-		result = prime * result + memberID;
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		return result;
 	}
 
@@ -96,27 +69,15 @@ public class BookResponseReport implements QualifiedObservableReport {
 		if (getClass() != obj.getClass())
 			return false;
 		BookResponseReport other = (BookResponseReport) obj;
-		if (bookAuthor == null) {
-			if (other.bookAuthor != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!bookAuthor.equals(other.bookAuthor))
-			return false;
-		if (bookId != other.bookId)
-			return false;
-		if (bookIsbn == null) {
-			if (other.bookIsbn != null)
-				return false;
-		} else if (!bookIsbn.equals(other.bookIsbn))
-			return false;
-		if (bookTitle == null) {
-			if (other.bookTitle != null)
-				return false;
-		} else if (!bookTitle.equals(other.bookTitle))
-			return false;
-		if (memberID != other.memberID)
+		} else if (!book.equals(other.book))
 			return false;
 		return true;
 	}
+
+	
 	
 		
 	

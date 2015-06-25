@@ -1,5 +1,7 @@
 package model;
 
+import datasource.DatabaseException;
+
 /**
  * Required of everyone who is interested in receiving reports from the model
  * 
@@ -14,6 +16,7 @@ public interface QualifiedObserver
 	 * 
 	 * @param report
 	 *            the report
+	 * @throws DatabaseException 
 	 */
-	public void receiveReport(QualifiedObservableReport report);
+	public void receiveReport(QualifiedObservableReport report) throws DatabaseException;
 }

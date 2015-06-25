@@ -42,21 +42,13 @@ public class CommandAddBook extends Command
 	
 	@Override
 	protected boolean execute() throws DatabaseException
-	{
-
-		BookRowDataGatewayMock gateway = null;
-		
+	{		
 		// use find constructor to get member information
-		gateway = new BookRowDataGatewayMock( bookIsbn, Booktitle, bookauthor,bookmemberID);
-		
-		// get the member name
-		int bookID = gateway.getBookID();
-		String bookIsbn = gateway.getISBN();
-		String bookAuthor = gateway.getAuthor();
-		String bookTitle = gateway.getTitle();
+		BookRowDataGatewayMock gateway = new BookRowDataGatewayMock(bookIsbn, Booktitle, bookauthor,bookmemberID);
+		Book book = new Book(gateway.getISBN());
 		
 		// create response report
-		BookResponseReport report = new BookResponseReport(bookID, bookIsbn, bookTitle, bookAuthor);
+		BookResponseReport report = new BookResponseReport(book);
 		
 		// send response report
 		QualifiedObservableConnector.getSingleton().sendReport(report);

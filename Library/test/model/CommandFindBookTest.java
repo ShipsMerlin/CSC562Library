@@ -4,8 +4,10 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import datasource.BookRowDataGatewayMock;
 import datasource.BooksForTest;
 import datasource.DatabaseException;
+import datasource.MemberRowDataGatewayMock;
 
 /**
  * @author bwiens
@@ -19,7 +21,10 @@ public class CommandFindBookTest
 	@Before
 	public void reset() {
 		QualifiedObservableConnector.resetSingleton();
+		new MemberRowDataGatewayMock().resetData();
+		new BookRowDataGatewayMock().resetData();
 	}
+
 	/**
 	 * @throws DatabaseException
 	 */
@@ -32,12 +37,9 @@ public class CommandFindBookTest
 				.getSingleton();
 
 		connector.registerObserver(mockedObserver, BookResponseReport.class);
-
-		BookResponseReport mockReport = new BookResponseReport(
-				BooksForTest.WELLINGTON.getBookID(),
-				BooksForTest.WELLINGTON.getISBN(),
-				BooksForTest.WELLINGTON.getTitle(),
-				BooksForTest.WELLINGTON.getAuthor());
+		Book book = new Book(BooksForTest.WELLINGTON.getISBN());
+		
+		BookResponseReport mockReport = new BookResponseReport(book);
 
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);

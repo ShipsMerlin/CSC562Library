@@ -8,6 +8,8 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import datasource.DatabaseException;
+
 /**
  * @author Merlin
  * 
@@ -46,9 +48,10 @@ public class QualifiedObserverConnectorTest
 	/**
 	 * If we register the same observer for the same report type, we should
 	 * ignore it
+	 * @throws DatabaseException 
 	 */
 	@Test
-	public void addingSameObserverTwiceIgnoresSecondCall()
+	public void addingSameObserverTwiceIgnoresSecondCall() throws DatabaseException
 	{
 		// set up the connection
 		QualifiedObservableConnector connector = QualifiedObservableConnector

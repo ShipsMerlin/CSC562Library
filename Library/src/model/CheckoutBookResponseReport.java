@@ -1,5 +1,7 @@
 package model;
 
+import datasource.DatabaseException;
+
 /**
  * @author ma7488
  *
@@ -10,29 +12,30 @@ public class CheckoutBookResponseReport implements QualifiedObservableReport
 	/**
 	 * 
 	 */
-	String bookName;
+	Book book;
 	/**
 	 * 
 	 */
-	String MemberName;
+	String memberName;
 	
 	/**
-	 * @param bName
-	 * @param MName
+	 * @param b 
+	 * @param name 
 	 */
-	public CheckoutBookResponseReport(String bName, String MName)
+	public CheckoutBookResponseReport(Book b, String name)
 	{
-		bookName = bName;
-		MemberName = MName;
+		book = b;
+		memberName = name;
 	
 	}
 	
 	/**
 	 * @return
+	 * @throws DatabaseException 
 	 */
-	public String getBookName() 
+	public String getBookName() throws DatabaseException 
 	{
-		return bookName;
+		return book.getTitle();
 	}
 	
 	/**
@@ -40,16 +43,16 @@ public class CheckoutBookResponseReport implements QualifiedObservableReport
 	 */
 	public String getMemberName() 
 	{
-		return MemberName;
+		return memberName;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
-		result = prime * result + ((MemberName == null) ? 0 : MemberName.hashCode());
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
+		result = prime * result
+				+ ((memberName == null) ? 0 : memberName.hashCode());
 		return result;
 	}
 
@@ -62,19 +65,21 @@ public class CheckoutBookResponseReport implements QualifiedObservableReport
 		if (getClass() != obj.getClass())
 			return false;
 		CheckoutBookResponseReport other = (CheckoutBookResponseReport) obj;
-		if (bookName == null) {
-			if (other.bookName != null)
+		if (book == null) {
+			if (other.book != null)
 				return false;
-		} else if (!bookName.equals(other.bookName))
+		} else if (!book.equals(other.book))
 			return false;
-		if (MemberName == null) {
-			if (other.MemberName != null)
+		if (memberName == null) {
+			if (other.memberName != null)
 				return false;
-		} else if (!MemberName.equals(other.MemberName))
+		} else if (!memberName.equals(other.memberName))
 			return false;
-
 		return true;
 	}
+	
+
+	
 	
 		
 	

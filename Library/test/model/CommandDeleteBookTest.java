@@ -24,7 +24,8 @@ public class CommandDeleteBookTest {
 		
 		connector.registerObserver(mockedObserver, BookResponseReport.class);
 		
-		BookResponseReport expectedReport = new BookResponseReport(BooksForTest.WELLINGTON.getBookID(), BooksForTest.WELLINGTON.getISBN(), BooksForTest.WELLINGTON.getTitle(), BooksForTest.WELLINGTON.getAuthor());
+		Book book = new Book(BooksForTest.WELLINGTON.getISBN());
+		BookResponseReport expectedReport = new BookResponseReport(book);
 		
 		mockedObserver.receiveReport(expectedReport);
 		EasyMock.replay(mockedObserver);

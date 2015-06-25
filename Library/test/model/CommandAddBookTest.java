@@ -4,8 +4,10 @@ import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import datasource.BookRowDataGatewayMock;
 import datasource.BooksForTest;
 import datasource.DatabaseException;
+import datasource.MemberRowDataGatewayMock;
 
 /**
  * @author
@@ -19,6 +21,8 @@ public class CommandAddBookTest
 	@Before
 	public void reset() {
 		QualifiedObservableConnector.resetSingleton();
+		new MemberRowDataGatewayMock().resetData();
+		new BookRowDataGatewayMock().resetData();
 	}
 	/**
 		 * 
@@ -47,9 +51,9 @@ public class CommandAddBookTest
 
 		connector.registerObserver(mockedObserver, BookResponseReport.class);
 
-		int newID = BooksForTest.values().length + 1;
-		BookResponseReport mockReport = new BookResponseReport(newID,
-				NewBookISBN, NewTitle, NewAuthor);
+		Book book = new Book(NewBookISBN, NewTitle, NewAuthor);
+		
+		BookResponseReport mockReport = new BookResponseReport(book);
 
 		mockedObserver.receiveReport(mockReport);
 		EasyMock.replay(mockedObserver);
@@ -57,7 +61,7 @@ public class CommandAddBookTest
 		// connector.sendReport(new FindMemberResponseReport(2, "Merlin"));
 
 		CommandAddBook cmd = new CommandAddBook(NewBookISBN, NewTitle,
-				NewAuthor, 38718);
+				NewAuthor, 2);
 		cmd.execute();
 		//
 		// try {

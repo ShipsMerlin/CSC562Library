@@ -41,18 +41,11 @@ public class CommandDeleteBook extends Command
 	@Override
 	protected boolean execute() throws DatabaseException
 	{
-		BookRowDataGatewayMock gateway = null;
-		
-		gateway = new BookRowDataGatewayMock(BookISBN);
-		
-		String BookTitle = gateway.getTitle();
-		String BookISBN = gateway.getISBN();
-		int BookID = gateway.getBookID();
-		String BookAuther = gateway.getAuthor();
-		
-		BookResponseReport report = new BookResponseReport(BookID, BookISBN, BookTitle, BookAuther);
-	
-		
+		BookRowDataGatewayMock gateway = new BookRowDataGatewayMock(BookISBN);
+		Book book = new Book(BookISBN);
+
+		BookResponseReport report = new BookResponseReport(book);
+
 		gateway.deleteBook();
 		
 		QualifiedObservableConnector.getSingleton().sendReport(report);

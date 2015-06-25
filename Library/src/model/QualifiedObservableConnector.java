@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import datasource.DatabaseException;
+
 /**
  * 
  * Portions of the system that are outside of the model need to be notified when
@@ -68,8 +70,9 @@ public class QualifiedObservableConnector
 	 * 
 	 * @param report
 	 *            the report
+	 * @throws DatabaseException 
 	 */
-	public void sendReport(QualifiedObservableReport report)
+	public void sendReport(QualifiedObservableReport report) throws DatabaseException
 	{
 		ArrayList<QualifiedObserver> relevantObservers = observers.get(report
 				.getClass());

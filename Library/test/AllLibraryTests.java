@@ -1,3 +1,4 @@
+import model.CommandCheckoutBookTest;
 import model.CommandAddBookTest;
 import model.CommandAddMemberTest;
 import model.CommandDeleteBookTest;
@@ -15,7 +16,6 @@ import org.junit.runners.Suite;
 import view.BookGUITest;
 import view.MemberGUITest;
 import view.RunnerTestMocked;
-import view.CheckoutBookGUITest;
 import datasource.BookRowDataGatewayMockTest;
 import datasource.BookTableDataGatewayMockTest;
 import datasource.MemberRowDataGatewayMockTest;
@@ -51,6 +51,7 @@ import datasource.MemberRowDataGatewayMockTest;
 		CommandDeleteBookTest.class,
 		CommandFindBookTest.class,
 		CommandFindMemberTest.class,
+		CommandCheckoutBookTest.class,
 		MemberDataMapperTest.class, 
 		MemberListTest.class,
 		MemberTest.class,
@@ -58,7 +59,7 @@ import datasource.MemberRowDataGatewayMockTest;
 
 		// View
 		BookGUITest.class,
-		CheckoutBookGUITest.class,
+		CommandCheckoutBookTest.class,
 		// ComponentMap.class
 		MemberGUITest.class,
 		RunnerTestMocked.class, 
