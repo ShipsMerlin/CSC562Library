@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.BookResponseReport;
+import model.CommandFindBook;
 import model.CommandFindMember;
 import model.MemberResponseReport;
 import model.ModelFacade;
@@ -25,6 +27,10 @@ import model.QualifiedObserver;
 public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static JFrame jFrame;
 	/**
 	 * 
@@ -41,8 +47,17 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 	/**
 	 * 
 	 */
+	JTextField bookSearchResult;
+	/**
+	 * 
+	 */
+	JTextField bookSearchTextField;
+	/**
+	 * 
+	 */
 	public CheckoutBookGUI() {
 		QualifiedObservableConnector.getSingleton().registerObserver(this, MemberResponseReport.class);
+		QualifiedObservableConnector.getSingleton().registerObserver(this, BookResponseReport.class);
 	}
 	
 	
@@ -63,17 +78,13 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 		/**
 		 * Adding all components for Member Search
 		 */
-		JPanel memberPanel = new JPanel();
-		memberPanel.setLayout(new GridLayout(2, 2));
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(1, 2));
+		JPanel memberSearchPanel = new JPanel();
+		memberSearchPanel.setLayout(new GridLayout(2,3));
 		JLabel memberLabel = new JLabel("Member");
-		memberLabel.setName("lblMember");
-
-		JLabel label3 = new JLabel("");
-		label3.setName("Spacer");
-		
-		memberSearchTextField = new JTextField(20);
+		memberSearchTextField = new JTextField(5);
 		memberSearchTextField.setName("txtMemberSearch");
-		
 		memberSearchButton = new JButton("Search");
 		memberSearchButton.setName("btnSearchMember");
 		memberSearchButton.addActionListener(new ActionListener()
@@ -86,39 +97,62 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 				ModelFacade.getSingleton().queueCommand(command);
 			}
 		});
-
-		memberSearchResult = new JTextField();
+		JLabel resultLabel = new JLabel("Result");
+		resultLabel.setName("resultMember");
+		memberSearchResult = new JTextField(5);
 		memberSearchResult.setName("memberSearchResult");
+		JLabel label3 = new JLabel("");
+		label3.setName("Spacer");
+		memberSearchPanel.add(memberLabel);
+		memberSearchPanel.add(memberSearchTextField);
+		memberSearchPanel.add(memberSearchButton);
+		memberSearchPanel.add(resultLabel );
+		memberSearchPanel.add(memberSearchResult);
+		memberSearchPanel.add(label3);
+		topPanel.add(memberSearchPanel);
+		content.add(topPanel);
+////////////////////////////////////////////////////////////////////////////////
+		
 
-		memberPanel.add(memberLabel);
-		memberPanel.add(label3);
-		memberPanel.add(memberSearchTextField);
-		memberPanel.add(memberSearchButton);
-		memberPanel.add(memberSearchResult);
-		content.add(memberPanel);
+		JPanel bookSearchPanel = new JPanel();
+		bookSearchPanel.setLayout(new GridLayout(2,3));
+		JLabel bookLabel = new JLabel("Book");
+		bookSearchTextField = new JTextField(5);
+		bookSearchTextField.setName("txtBookSearch");
+		JButton bookSearchButton = new JButton("Search");
+		bookSearchButton.setName("btnSearchBook");
+		bookSearchButton.addActionListener(new ActionListener()
+		{
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				CommandFindBook command = new CommandFindBook(bookSearchTextField.getText());
+				ModelFacade.getSingleton().queueCommand(command);
+				// TODO Auto-generated method stub
+			}
+				
+		});
+		
+		JLabel bookresultLabel = new JLabel("Result");
+		bookresultLabel.setName("resultBook");
+		bookSearchResult = new JTextField(5);
+		bookSearchResult.setName("bookSearchResult");
+		JLabel label4 = new JLabel("");
+		label3.setName("Spacer");
+		
+		bookSearchPanel.add(bookLabel);
+		bookSearchPanel.add(bookSearchTextField);
+		bookSearchPanel.add(bookSearchButton);
+		bookSearchPanel.add(bookresultLabel );
+		bookSearchPanel.add(bookSearchResult);
+		bookSearchPanel.add(label4);
+		topPanel.add(bookSearchPanel);
+		content.add(topPanel);
 		/**
 		 * Adding all components for Book Search
 		 */
-		JPanel bookPanel = new JPanel();
-		bookPanel.setLayout(new GridLayout(2, 2));
-		JLabel bookLabel = new JLabel("Book");
-		bookLabel.setName("lblBook");
-
-		JLabel label4 = new JLabel("");
-		label4.setName("Spacer");
-		JButton bookSearchButton = new JButton("Search");
-		bookSearchButton.setName("btnSearchBook");
-
-		final JTextField y = new JTextField(20);
-		y.setName("txtBookSearch");
-
-		bookPanel.add(bookLabel);
-		bookPanel.add(label4);
-		bookPanel.add(y);
-		bookPanel.add(bookSearchButton);
-		content.add(bookPanel);
-
+	
 		/**
 		 * Adding Checkout Button
 		 */
@@ -179,6 +213,12 @@ public class CheckoutBookGUI extends JPanel implements QualifiedObserver
 		{
 			MemberResponseReport fmrr = (MemberResponseReport)report;
 			memberSearchResult.setText(fmrr.getMemberName());
+			//System.out.println(fmrr.getMemberName());
+		}
+		else if (report.getClass().equals(BookResponseReport.class))
+		{
+			BookResponseReport fmrr = (BookResponseReport)report;
+			bookSearchResult.setText(fmrr.getBookTitle());
 			//System.out.println(fmrr.getMemberName());
 		}
 		
