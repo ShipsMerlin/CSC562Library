@@ -63,4 +63,10 @@ public interface BookRowDataGateway
 	 */
 	public void deleteBook();
 
+	/**
+	 * @return asd
+	 * @throws DatabaseException
+	 */
+	int getQuantity() throws DatabaseException;
+
 }

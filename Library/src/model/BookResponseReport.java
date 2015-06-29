@@ -8,13 +8,18 @@ import datasource.DatabaseException;
  */
 public class BookResponseReport implements QualifiedObservableReport {
 	
-	 Book book;
+	 /**
+	 * 
+	 */
+	Book book;
 	
 	/**
+	 * @param book 
 	 * @param id
 	 * @param isbn
 	 * @param title
 	 * @param author
+	 * @param quantity
 	 */
 	public BookResponseReport(Book book) {
 		this.book = book;		
@@ -50,6 +55,15 @@ public class BookResponseReport implements QualifiedObservableReport {
 	 */
 	public String getBookAuthor() throws DatabaseException {
 		return book.getAuthor();
+	}
+	
+	/**
+	 * @return quantity
+	 * @throws DatabaseException 
+	 */
+	public int getBookQuantity() throws DatabaseException {
+		// TODO Auto-generated method stub
+		return book.getQuantity();
 	}
 
 	@Override

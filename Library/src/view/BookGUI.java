@@ -42,6 +42,11 @@ public class BookGUI implements QualifiedObserver
 	 * 
 	 */
 	JTextField titleBox;
+	
+	/**
+	 * 
+	 */
+	JTextField BookQuantityBox;
 	/**
 	 * 
 	 */
@@ -126,7 +131,7 @@ public class BookGUI implements QualifiedObserver
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				CommandAddBook command = new CommandAddBook(isbnBox.getText(), titleBox.getText(), authorBox.getText(), 0);
+				CommandAddBook command = new CommandAddBook(isbnBox.getText(), titleBox.getText(), authorBox.getText(), 0, 0);
 				ModelFacade.getSingleton().queueCommand(command);
 			}
 		});
@@ -154,7 +159,15 @@ public class BookGUI implements QualifiedObserver
 				ModelFacade.getSingleton().queueCommand(command);
 			}
 		});
-		searchFieldPanel.add(BookISBNLabel );
+		
+		JLabel bookQuantity = new JLabel("Book Quantity:");
+		bookQuantity .setName("BookQuantity");
+		BookQuantityBox = new JTextField();
+		BookQuantityBox.setName("BookQuantityTextFieldBox");
+		
+		searchFieldPanel.add(bookQuantity);
+		searchFieldPanel.add(BookQuantityBox);	
+		searchFieldPanel.add(BookISBNLabel);
 		searchFieldPanel.add(BookISBNBox);
 		searchFieldPanel.add(buttonSearchBooks);
 		bookCard.add(searchFieldPanel);
@@ -220,6 +233,8 @@ public class BookGUI implements QualifiedObserver
 			BookResponseReport mrr = (BookResponseReport)report;
 			bottomTitleTextField.setText(mrr.getBookTitle());
 			bottomAuthorTextField.setText(mrr.getBookAuthor());
+			BookQuantityBox.setText(String.valueOf(mrr.getBookQuantity()));
+			
 			//System.out.println(fmrr.getMemberName());
 		}
 	}

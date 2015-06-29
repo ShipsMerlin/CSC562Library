@@ -12,16 +12,16 @@ public enum BooksForTest
 	 * 
 	 */
 	CATCHER_IN_THE_RYE(1, "1514355000", "Catcher In The Rye", "J. D. Salinger",
-			MembersForTest.MERLIN.getMemberID()),
+			MembersForTest.MERLIN.getMemberID(), 2),
 	/**
 	 * 
 	 */
 	WELLINGTON(2, "0007137508", "Wellington The Iron Duke", "Richard Holmes",
-			MembersForTest.MERLIN.getMemberID()),
+			MembersForTest.MERLIN.getMemberID(), 10),
 	/**
 	 * 
 	 */
-	FINDERS_KEEPERS(3, "12121212", "Finders Keepers", "Stephen King", 0);
+	FINDERS_KEEPERS(3, "12121212", "Finders Keepers", "Stephen King", 0, 99);
 
 	private int bookID;
 
@@ -32,15 +32,18 @@ public enum BooksForTest
 	private String author;
 	
 	private int memberID;
+	
+	private int quantity;
 
 	private BooksForTest(int bookID, String isbn, String title, String author,
-			int memberID)
+			int memberID, int quantity)
 	{
 		this.bookID = bookID;
 		this.isbn = isbn;
 		this.title = title;
 		this.author = author;
 		this.memberID = memberID;
+		this.quantity = quantity;
 	}
 
 	/**
@@ -75,6 +78,15 @@ public enum BooksForTest
 	{
 		return memberID;
 	}
+	
+	/**
+	 * @return quantity
+	 */
+	public int getQuantity()
+	{
+		return quantity;
+	}
+
 
 	/**
 	 * @return the title of the book
