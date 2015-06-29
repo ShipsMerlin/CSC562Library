@@ -26,9 +26,9 @@ public class BookRowDataGatewayMockTest extends BookRowDataGatewayTest
 	 */
 	@Override
 	BookRowDataGateway createGateway(String isbn, String title, String author,
-			int memberID, int quantity)
+			int memberID)
 	{
-		return new BookRowDataGatewayMock(isbn, title, author, memberID, quantity);
+		return new BookRowDataGatewayMock(isbn, title, author, memberID);
 	}
 
 	/**

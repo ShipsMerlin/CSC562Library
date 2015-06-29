@@ -16,22 +16,20 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 
 	private class BookInfo
 	{
-		
-		public BookInfo(int bookId, String title, String author, int memberID, int quantity)
+		public BookInfo(int bookId, String title, String author, int memberID)
 		{
 			super();
 			this.bookId = bookId;
 			this.title = title;
 			this.author = author;
 			this.memberID = memberID;
-			this.quantity = quantity;
 		}
 
 		private int bookId;
 		private String title;
 		private String author;
 		private int memberID;
-		private int quantity;
+
 	}
 
 	/**
@@ -77,14 +75,12 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	 *            the book's title
 	 * @param author
 	 *            the books author
-	 * @param quantity
-	 *            the books quantity
 	 * @param memberID
 	 *            the ID of the member that has this book checked out
 	 * 
 	 */
 	public BookRowDataGatewayMock(String isbn, String title, String author,
-			int memberID, int quantity)
+			int memberID)
 	{
 		if (bookInfo == null)
 		{
@@ -94,7 +90,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 		nextKey++;
 		this.isbn = isbn;
 
-		info = new BookInfo(bookID, title, author, memberID, quantity);
+		info = new BookInfo(bookID, title, author, memberID);
 		bookInfo.put(isbn, info);
 
 	}
@@ -119,7 +115,7 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 			bookInfo.put(
 					p.getISBN(),
 					new BookInfo(nextKey, p.getTitle(), p.getAuthor(), p
-							.getMemberID(), p.getQuantity()));
+							.getMemberID()));
 			nextKey++;
 		}
 	}
@@ -137,14 +133,6 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 		return info.bookId;
 	}
 
-	@Override
-	public int getQuantity() throws DatabaseException
-	{
-		if (info == null) {
-			throw new DatabaseException("Book has no Quantity.");
-		}
-		return info.quantity;
-	}
 	/**
 	 * @throws DatabaseException 
 	 * @see datasource.BookRowDataGateway#getISBN()
@@ -208,15 +196,12 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 	/**
 	 * @see datasource.BookRowDataGateway#getMemberID()
 	 */
-
-	/**
-	 * @see datasource.BookRowDataGateway#getMemberID()
-	 */
 	@Override
 	public int getMemberID()
 	{
 		return info.memberID;
 	}
+	
 	/**
 	 * 
 	 */
@@ -251,6 +236,5 @@ public class BookRowDataGatewayMock implements BookRowDataGateway
 			return false;
 		return true;
 	}
-
 
 }

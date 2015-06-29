@@ -28,10 +28,9 @@ public class Book
 	 * @param isbn
 	 * @param title
 	 * @param author
-	 * @param quantity
 	 */
-	public Book(String isbn, String title, String author, int quantity) {
-		gatewayMock = new BookRowDataGatewayMock(isbn, title, author, 0, quantity);
+	public Book(String isbn, String title, String author) {
+		gatewayMock = new BookRowDataGatewayMock(isbn, title, author, 0);
 	}
 
 
@@ -101,12 +100,4 @@ public class Book
 		return gatewayMock.getAuthor();
 	}
 
-	/**
-	 * @return the book's author
-	 * @throws DatabaseException 
-	 */
-	public int getQuantity() throws DatabaseException
-	{
-		return gatewayMock.getQuantity();
-	}
 }
